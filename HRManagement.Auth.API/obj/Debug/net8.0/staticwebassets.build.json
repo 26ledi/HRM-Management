@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "vKrgAt5I9MDhysRKbyZWCfdIlfdeymFkQT/N2E4nLjo=",
+  "Source": "HRManagement.Auth.API",
+  "BasePath": "_content/HRManagement.Auth.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
