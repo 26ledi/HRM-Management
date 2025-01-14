@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HRManagement.BusinessLogic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c884deb749b908e67cb3fa981b698958d50290a5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f4bc13ed058659a7973d2e924437959bd4367ec5")]
 [assembly: System.Reflection.AssemblyProductAttribute("HRManagement.BusinessLogic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HRManagement.BusinessLogic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
