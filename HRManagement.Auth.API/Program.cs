@@ -1,4 +1,4 @@
-using HRManagement.Auth.API.Extensions;
+using HRManagement.Auth.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +20,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+await app.UseMigration();
 
 app.UseAuthorization();
 

@@ -1,8 +1,11 @@
-﻿using HRManagement.DataAccess.Extensions;
+﻿using HRManagement.BusinessLogic.SeedData;
+using HRManagement.DataAccess.Data;
+using HRManagement.DataAccess.Extensions;
+using HRManagement.DataAccess.SeedData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
-namespace HRManagement.Auth.API.Extensions
+namespace HRManagement.Auth.API
 {
     public static class ApplicationDependenciesConfiguration
     {
@@ -51,6 +54,25 @@ namespace HRManagement.Auth.API.Extensions
             });
 
             return builder.Services;
+        }
+        /// <summary>
+        /// Add the migration to the database
+        /// </summary>
+        /// <param name="application">The application builder</param>
+        /// <returns>A <see cref="Task"/></returns>
+        public async static Task UseMigration(this WebApplication application)
+        {
+            var serviceScopeFactory = application.Services.GetService<IServiceScopeFactory>();
+            using var scope = serviceScopeFactory.CreateScope();
+
+            var handler = scope.ServiceProvider.GetRequiredService<IdentityContext>();
+            await handler.Database.MigrateAsync();
+
+            var roleSeed = scope.ServiceProvider.GetRequiredService<SeedRole>();
+            await roleSeed.InitializeRolesAsync();
+
+            var adminSeed = scope.ServiceProvider.GetRequiredService<SeedAdmin>();
+            await adminSeed.InitializeAdminAsync();
         }
     }
 }
