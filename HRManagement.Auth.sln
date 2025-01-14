@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRManagement.Auth.API", "HRManagement.Auth.API\HRManagement.Auth.API.csproj", "{9B97A628-655D-4DD0-8F93-466674D240EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRManagement.Auth.API", "HRManagement.Auth.API\HRManagement.Auth.API.csproj", "{9B97A628-655D-4DD0-8F93-466674D240EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRManagement.DataAccess", "HRManagement.DataAccess\HRManagement.DataAccess.csproj", "{9678BAA6-18E6-47CF-BEAF-2D8AD50DD266}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRManagement.BusinessLogic", "HRManagement.BusinessLogic\HRManagement.BusinessLogic.csproj", "{45C30C5F-F541-4F4D-9D0D-D3029F905703}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{9B97A628-655D-4DD0-8F93-466674D240EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B97A628-655D-4DD0-8F93-466674D240EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B97A628-655D-4DD0-8F93-466674D240EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9678BAA6-18E6-47CF-BEAF-2D8AD50DD266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9678BAA6-18E6-47CF-BEAF-2D8AD50DD266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9678BAA6-18E6-47CF-BEAF-2D8AD50DD266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9678BAA6-18E6-47CF-BEAF-2D8AD50DD266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C30C5F-F541-4F4D-9D0D-D3029F905703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C30C5F-F541-4F4D-9D0D-D3029F905703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C30C5F-F541-4F4D-9D0D-D3029F905703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C30C5F-F541-4F4D-9D0D-D3029F905703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
