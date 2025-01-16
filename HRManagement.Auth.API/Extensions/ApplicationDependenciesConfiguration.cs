@@ -74,5 +74,18 @@ namespace HRManagement.Auth.API
             var adminSeed = scope.ServiceProvider.GetRequiredService<SeedAdmin>();
             await adminSeed.InitializeAdminAsync();
         }
+        /// <summary>
+        /// Add all the services form business logic
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            return services
+                //.AddScoped<IUserService, UserService>()
+                //.AddScoped<IUserAuthenticationService, UserAuthenticationService>()
+                .AddScoped<SeedRole>()
+                .AddScoped<SeedAdmin>();
+        }
     }
 }

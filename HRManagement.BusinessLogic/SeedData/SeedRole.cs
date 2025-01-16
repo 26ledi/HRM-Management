@@ -20,7 +20,7 @@ namespace HRManagement.BusinessLogic.SeedData
         /// </summary>
         public async Task InitializeRolesAsync()
         {
-            string[] roleNames = { "Admin", "Teacher"};
+            string[] roleNames = { "Manager", "Teacher", "HeadOfDepartement"};
             IdentityResult roleResult;
 
             foreach (var roleName in roleNames)
