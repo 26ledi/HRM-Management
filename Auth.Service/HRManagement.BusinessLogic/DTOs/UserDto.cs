@@ -7,7 +7,7 @@
         /// <summary>
         /// Gets or sets the user's identifier.
         /// </summary>
-        public Guid Id { get; set; } 
+        public string Id { get; set; } 
 
         /// <summary>
         /// The name of the user

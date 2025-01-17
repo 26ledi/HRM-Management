@@ -50,7 +50,7 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
                 throw new AlreadyExistsException("This user exists already");
             }
 
-            user.Id = Guid.NewGuid();
+            user.Id = Guid.NewGuid().ToString();
             await _userManager.AddToRoleAsync(_mapper.Map<IdentityUser>(user), user.Role);
             var identityUser = _mapper.Map<IdentityUser>(user);
             await _userManager.CreateAsync(identityUser);

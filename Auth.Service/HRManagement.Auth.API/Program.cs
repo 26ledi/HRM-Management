@@ -1,4 +1,5 @@
 using HRManagement.Auth.API;
+using HRManagement.Auth.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+
 await app.UseMigration();
 
 app.UseAuthorization();
