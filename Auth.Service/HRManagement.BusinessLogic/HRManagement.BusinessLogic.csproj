@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MassTransit" Version="8.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\HRManagement.Exceptions.Shared\HRManagement.Exceptions.Shared.csproj" />
+    <ProjectReference Include="..\..\Shared\HRManagement.Message.Shared\HRManagement.Messages.Shared.csproj" />
     <ProjectReference Include="..\HRManagement.DataAccess\HRManagement.DataAccess.csproj" />
   </ItemGroup>
 
