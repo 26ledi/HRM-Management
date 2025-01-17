@@ -4450,11 +4450,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Joyce Ledi\\HRM Management\\HRManagement.Auth\\HRManagement.DataAccess\\HRManagement.DataAccess.csproj",
+      "projectUniqueName": "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Auth.Service\\HRManagement.DataAccess\\HRManagement.DataAccess.csproj",
       "projectName": "HRManagement.DataAccess",
-      "projectPath": "C:\\Joyce Ledi\\HRM Management\\HRManagement.Auth\\HRManagement.DataAccess\\HRManagement.DataAccess.csproj",
+      "projectPath": "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Auth.Service\\HRManagement.DataAccess\\HRManagement.DataAccess.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Joyce Ledi\\HRM Management\\HRManagement.Auth\\HRManagement.DataAccess\\obj\\",
+      "outputPath": "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Auth.Service\\HRManagement.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

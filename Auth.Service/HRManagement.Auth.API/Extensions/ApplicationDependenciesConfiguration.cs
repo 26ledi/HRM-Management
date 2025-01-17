@@ -1,9 +1,13 @@
-﻿using HRManagement.BusinessLogic.SeedData;
+﻿using HRManagement.BusinessLogic.Helpers;
+using HRManagement.BusinessLogic.Repositories.Interfaces;
+using HRManagement.BusinessLogic.SeedData;
+using HRManagement.BusinessLogic.Services.Implementations;
 using HRManagement.DataAccess.Data;
 using HRManagement.DataAccess.Extensions;
 using HRManagement.DataAccess.SeedData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 namespace HRManagement.Auth.API
 {
@@ -11,6 +15,7 @@ namespace HRManagement.Auth.API
     {
         public static IServiceCollection ConfigureServices(this WebApplicationBuilder builder)
         {
+            builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
             builder.Services.AddIdentityDatabase(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
@@ -73,6 +78,36 @@ namespace HRManagement.Auth.API
 
             var adminSeed = scope.ServiceProvider.GetRequiredService<SeedAdmin>();
             await adminSeed.InitializeAdminAsync();
+        }
+        /// <summary>
+        /// Add all the services form business logic
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            return services
+                .AddScoped<IUserService, UserService>()
+                .AddScoped<SeedRole>()
+                .AddScoped<SeedAdmin>();
+        }
+        /// <summary>
+        /// Configuring The logger 
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddLogger(this WebApplicationBuilder builder)
+        {
+            builder.Host.UseSerilog((context, configuration) =>
+            {
+                configuration.ReadFrom.Configuration(builder.Configuration)
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .Enrich.WithEnvironmentName()
+                .Enrich.WithMachineName();
+            });
+
+            return builder.Services;
         }
     }
 }
