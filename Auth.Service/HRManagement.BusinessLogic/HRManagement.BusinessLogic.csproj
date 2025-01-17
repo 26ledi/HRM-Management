@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\HRManagement.Exceptions.Shared\HRManagement.Exceptions.Shared.csproj" />
-    <ProjectReference Include="..\..\Shared\HRManagement.Message.Shared\HRManagement.Message.Shared.csproj" />
+    <ProjectReference Include="..\..\Shared\HRManagement.Message.Shared\HRManagement.Messages.Shared.csproj" />
     <ProjectReference Include="..\HRManagement.DataAccess\HRManagement.DataAccess.csproj" />
   </ItemGroup>
 

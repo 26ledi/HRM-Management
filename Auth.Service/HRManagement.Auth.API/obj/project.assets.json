@@ -3331,7 +3331,7 @@
           "AutoMapper": "13.0.1",
           "HRManagement.DataAccess": "1.0.0",
           "HRManagement.Exceptions.Shared": "1.0.0",
-          "HRManagement.Message.Shared": "1.0.0",
+          "HRManagement.Messages.Shared": "1.0.0",
           "MassTransit": "8.3.4"
         },
         "compile": {
@@ -3368,14 +3368,14 @@
           "bin/placeholder/HRManagement.Exceptions.Shared.dll": {}
         }
       },
-      "HRManagement.Message.Shared/1.0.0": {
+      "HRManagement.Messages.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "compile": {
-          "bin/placeholder/HRManagement.Message.Shared.dll": {}
+          "bin/placeholder/HRManagement.Messages.Shared.dll": {}
         },
         "runtime": {
-          "bin/placeholder/HRManagement.Message.Shared.dll": {}
+          "bin/placeholder/HRManagement.Messages.Shared.dll": {}
         }
       }
     }
@@ -9868,10 +9868,10 @@
       "path": "../../Shared/HRManagement.Exceptions.Shared/HRManagement.Exceptions.Shared.csproj",
       "msbuildProject": "../../Shared/HRManagement.Exceptions.Shared/HRManagement.Exceptions.Shared.csproj"
     },
-    "HRManagement.Message.Shared/1.0.0": {
+    "HRManagement.Messages.Shared/1.0.0": {
       "type": "project",
-      "path": "../../Shared/HRManagement.Message.Shared/HRManagement.Message.Shared.csproj",
-      "msbuildProject": "../../Shared/HRManagement.Message.Shared/HRManagement.Message.Shared.csproj"
+      "path": "../../Shared/HRManagement.Message.Shared/HRManagement.Messages.Shared.csproj",
+      "msbuildProject": "../../Shared/HRManagement.Message.Shared/HRManagement.Messages.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {

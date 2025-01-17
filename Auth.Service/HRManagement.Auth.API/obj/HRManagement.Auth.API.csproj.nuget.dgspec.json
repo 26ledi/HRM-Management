@@ -131,8 +131,8 @@
               "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Exceptions.Shared\\HRManagement.Exceptions.Shared.csproj": {
                 "projectPath": "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Exceptions.Shared\\HRManagement.Exceptions.Shared.csproj"
               },
-              "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Message.Shared\\HRManagement.Message.Shared.csproj": {
-                "projectPath": "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Message.Shared\\HRManagement.Message.Shared.csproj"
+              "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Message.Shared\\HRManagement.Messages.Shared.csproj": {
+                "projectPath": "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Message.Shared\\HRManagement.Messages.Shared.csproj"
               }
             }
           }
@@ -337,12 +337,12 @@
         }
       }
     },
-    "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Message.Shared\\HRManagement.Message.Shared.csproj": {
+    "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Message.Shared\\HRManagement.Messages.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Message.Shared\\HRManagement.Message.Shared.csproj",
-        "projectName": "HRManagement.Message.Shared",
-        "projectPath": "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Message.Shared\\HRManagement.Message.Shared.csproj",
+        "projectUniqueName": "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Message.Shared\\HRManagement.Messages.Shared.csproj",
+        "projectName": "HRManagement.Messages.Shared",
+        "projectPath": "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Message.Shared\\HRManagement.Messages.Shared.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
         "outputPath": "C:\\Joyce Ledi\\HRM Management\\HRM-Management\\Shared\\HRManagement.Message.Shared\\obj\\",
         "projectStyle": "PackageReference",

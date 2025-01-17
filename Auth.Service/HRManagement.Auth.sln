@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRManagement.DataAccess", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRManagement.BusinessLogic", "HRManagement.BusinessLogic\HRManagement.BusinessLogic.csproj", "{45C30C5F-F541-4F4D-9D0D-D3029F905703}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRManagement.Message.Shared", "..\Shared\HRManagement.Message.Shared\HRManagement.Message.Shared.csproj", "{CF0E1B50-44A5-4476-8DD3-A8A8A03635F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRManagement.Messages.Shared", "..\Shared\HRManagement.Message.Shared\HRManagement.Messages.Shared.csproj", "{CF0E1B50-44A5-4476-8DD3-A8A8A03635F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{9ACCF025-9C1A-4056-B437-9FBFE37F0C2C}"
 EndProject
