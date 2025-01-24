@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HRManagement.MessageBrokers.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c881cb96a35226fa02d60d3d340beaee0552e39")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c68775aaa8bf8a9f444e4161fd04cb11bc44efc")]
 [assembly: System.Reflection.AssemblyProductAttribute("HRManagement.MessageBrokers.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HRManagement.MessageBrokers.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

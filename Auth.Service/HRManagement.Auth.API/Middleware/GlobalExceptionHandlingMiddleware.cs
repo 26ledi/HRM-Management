@@ -2,29 +2,18 @@
 
 namespace HRManagement.Auth.API.Middleware
 {
-    /// <summary>
-    /// Custom Exception Handler
-    /// </summary>
+
     public class GlobalExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<GlobalExceptionHandlingMiddleware> _logger;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="GlobalExceptionHandlingMiddleware"/>
-        /// </summary>
-        /// <param name="next"></param>
         public GlobalExceptionHandlingMiddleware(RequestDelegate next, ILogger<GlobalExceptionHandlingMiddleware> logger)
         {
             _next = next;
             _logger = logger;
         }
 
-        /// <summary>
-        /// Invoke the middleware
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
         public async Task InvokeAsync(HttpContext context)
         {
             try
@@ -45,13 +34,6 @@ namespace HRManagement.Auth.API.Middleware
             }
         }
 
-        /// <summary>
-        /// Write the status and the message of the exception in the body of the response
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="statusCode"></param>
-        /// <param name="ex"></param>
-        /// <returns></returns>
         private async Task WriteExceptionMessageAndStatusCode(HttpContext context, int statusCode, Exception ex)
         {
             _logger.LogError(0, ex, "{message}", ex.Message);

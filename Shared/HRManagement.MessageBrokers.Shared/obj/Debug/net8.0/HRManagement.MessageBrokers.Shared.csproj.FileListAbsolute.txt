@@ -1,0 +1,12 @@
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\bin\Debug\net8.0\HRManagement.MessageBrokers.Shared.deps.json
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\bin\Debug\net8.0\HRManagement.MessageBrokers.Shared.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\bin\Debug\net8.0\HRManagement.MessageBrokers.Shared.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\obj\Debug\net8.0\HRManagement.MessageBrokers.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\obj\Debug\net8.0\HRManagement.MessageBrokers.Shared.AssemblyInfoInputs.cache
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\obj\Debug\net8.0\HRManagement.MessageBrokers.Shared.AssemblyInfo.cs
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\obj\Debug\net8.0\HRManagement.MessageBrokers.Shared.csproj.CoreCompileInputs.cache
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\obj\Debug\net8.0\HRManagement.MessageBrokers.Shared.sourcelink.json
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\obj\Debug\net8.0\HRManagement.MessageBrokers.Shared.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\obj\Debug\net8.0\refint\HRManagement.MessageBrokers.Shared.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\obj\Debug\net8.0\HRManagement.MessageBrokers.Shared.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.MessageBrokers.Shared\obj\Debug\net8.0\ref\HRManagement.MessageBrokers.Shared.dll

@@ -33,11 +33,6 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
             _options = options;
         }
 
-        /// <summary>
-        /// Function for creating a user with details
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
         public async Task<UserDto> CreateAsync(UserDto user, string password)
         {
             _logger.LogInformation("Process of adding a user...");
@@ -51,27 +46,23 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
             }
 
             user.Id = Guid.NewGuid().ToString();
-            await _userManager.AddToRoleAsync(_mapper.Map<IdentityUser>(user), user.Role);
             var identityUser = _mapper.Map<IdentityUser>(user);
-            await _userManager.CreateAsync(identityUser);
-            _logger.LogInformation("The user has been added...");
-            //publish
 
+            _logger.LogInformation("Starting the transaction for creating a new user with username {username} and email {email}", user.UserName, user.Email);
+            IdentityResult result = await _userManager.CreateAsync(identityUser, password);
+            _logger.LogInformation("The user has been successfully added...");
+            await _userManager.AddRoleToUserAsync(user.Role, identityUser);
+            _logger.LogInformation($"The role {user.Role} has been successfully assigned to {user.Name}...");
+            //publish
+ 
             return _mapper.Map<UserDto>(identityUser);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
         public async Task<TokenDto> LoginAsync(UserLoginDto user)
         {
             _logger.LogInformation("Process of connecting a user...");
             var userLooked = await _userManager.FindByEmailAsync(user.Email)
                                                ?? throw new NotFoundException($"The user with this email : {user.Email} does not exist ");
-
-            await _userManager.IsEmailConfirmedAsync(userLooked);
 
             if (!await _userManager.CheckPasswordAsync(userLooked, user.Password))
             {
@@ -81,11 +72,7 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
 
             return await GenerateTokenAsync(userLooked);
         }
-        /// <summary>
-        /// Generate a jwt token for a specific user
-        /// </summary>
-        /// <param name="user">The user</param>
-        /// <returns></returns>
+
         private async Task<TokenDto> GenerateTokenAsync(IdentityUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -99,7 +86,7 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
                      new Claim(ClaimTypes.Email , user.Email),
                      new Claim(ClaimTypes.Role, role)
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt32(_options.Value.DurationInMinutes)),
+                Expires = DateTime.UtcNow.AddMinutes(15),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                 SecurityAlgorithms.HmacSha256Signature),
                 Audience = _options.Value.Audience,

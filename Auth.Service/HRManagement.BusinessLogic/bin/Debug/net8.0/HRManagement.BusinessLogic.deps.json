@@ -10,6 +10,8 @@
         "dependencies": {
           "AutoMapper": "13.0.1",
           "HRManagement.DataAccess": "1.0.0",
+          "HRManagement.Exceptions.Shared": "1.0.0",
+          "HRManagement.Messages.Shared": "1.0.0",
           "MassTransit": "8.3.4"
         },
         "runtime": {
@@ -762,6 +764,22 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "HRManagement.Exceptions.Shared/1.0.0": {
+        "runtime": {
+          "HRManagement.Exceptions.Shared.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "HRManagement.Messages.Shared/1.0.0": {
+        "runtime": {
+          "HRManagement.Messages.Shared.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1297,6 +1315,16 @@
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
     "HRManagement.DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HRManagement.Exceptions.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HRManagement.Messages.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

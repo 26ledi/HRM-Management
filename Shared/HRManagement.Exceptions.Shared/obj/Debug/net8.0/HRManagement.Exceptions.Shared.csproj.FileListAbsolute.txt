@@ -1,0 +1,12 @@
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\bin\Debug\net8.0\HRManagement.Exceptions.Shared.deps.json
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\bin\Debug\net8.0\HRManagement.Exceptions.Shared.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\bin\Debug\net8.0\HRManagement.Exceptions.Shared.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\obj\Debug\net8.0\HRManagement.Exceptions.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\obj\Debug\net8.0\HRManagement.Exceptions.Shared.AssemblyInfoInputs.cache
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\obj\Debug\net8.0\HRManagement.Exceptions.Shared.AssemblyInfo.cs
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\obj\Debug\net8.0\HRManagement.Exceptions.Shared.csproj.CoreCompileInputs.cache
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\obj\Debug\net8.0\HRManagement.Exceptions.Shared.sourcelink.json
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\obj\Debug\net8.0\HRManagement.Exceptions.Shared.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\obj\Debug\net8.0\refint\HRManagement.Exceptions.Shared.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\obj\Debug\net8.0\HRManagement.Exceptions.Shared.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Shared\HRManagement.Exceptions.Shared\obj\Debug\net8.0\ref\HRManagement.Exceptions.Shared.dll
