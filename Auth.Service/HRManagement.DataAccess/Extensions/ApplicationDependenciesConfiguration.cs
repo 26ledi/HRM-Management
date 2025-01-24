@@ -5,18 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HRManagement.DataAccess.Extensions
 {
-    // <summary>
-    /// The Application configuration to configure the service of the database comming from the Data access
-    /// </summary>
-    /// <summary>
+
     public static class ApplicationDependenciesConfiguration
     {
-        /// <summary>
-        /// Add the identity service database and all the dependencies
-        /// </summary>
-        /// <param name="services">The service collection</param>
-        /// <param name="options">The options builder to be passed to the function</param>
-        /// <returns>A <see cref="IServiceCollection"/></returns>
         public static IServiceCollection AddIdentityDatabase(this IServiceCollection services, Action<DbContextOptionsBuilder> options)
         {
 

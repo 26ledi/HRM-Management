@@ -30,3 +30,7 @@ C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.BusinessLo
 C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.BusinessLogic\bin\Debug\net8.0\HRManagement.DataAccess.pdb
 C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.BusinessLogic\obj\Debug\net8.0\HRManage.0DEFE58D.Up2Date
 C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.BusinessLogic\obj\Debug\net8.0\ref\HRManagement.BusinessLogic.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.BusinessLogic\bin\Debug\net8.0\HRManagement.Exceptions.Shared.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.BusinessLogic\bin\Debug\net8.0\HRManagement.Messages.Shared.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.BusinessLogic\bin\Debug\net8.0\HRManagement.Exceptions.Shared.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.BusinessLogic\bin\Debug\net8.0\HRManagement.Messages.Shared.pdb
