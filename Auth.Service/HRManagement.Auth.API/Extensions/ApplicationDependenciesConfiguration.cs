@@ -8,8 +8,11 @@ using HRManagement.BusinessLogic.Services.Implementations;
 using HRManagement.DataAccess.Data;
 using HRManagement.DataAccess.Extensions;
 using HRManagement.DataAccess.SeedData;
+using HRManagement.MessageBrokers.Shared;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -65,7 +68,6 @@ namespace HRManagement.Auth.API
                     RequireExpirationTime = true,
                     ValidateLifetime = true
                 };
-
             });
 
             return builder.Services;
@@ -139,5 +141,27 @@ namespace HRManagement.Auth.API
 
             return builder.Services;
         }
+        public static IServiceCollection ConfigureMassTransit(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddOptions<RabbitMQConfiguration>().Bind(configuration.GetSection("RabbitMQ"));
+
+            services.AddMassTransit(_busRegistration =>
+            {
+                _busRegistration.UsingRabbitMq((context, cfg) =>
+                {
+                    var options = context.GetRequiredService<IOptions<RabbitMQConfiguration>>().Value;
+
+                    cfg.Host(options.Host, h =>
+                    {
+                        h.Username(options.Username);
+                        h.Password(options.Password);
+                    });
+                });
+            });
+
+            return services;
+        }
+
     }
 }
+

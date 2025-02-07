@@ -4,6 +4,8 @@ using HRManagement.BusinessLogic.Helpers;
 using HRManagement.BusinessLogic.Repositories.Interfaces;
 using HRManagement.BusinessLogic.Services.Implementations;
 using HRManagement.Exceptions.Shared;
+using HRManagement.Message.Shared;
+using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -21,16 +23,17 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
         private readonly IMapper _mapper;
         private readonly ILogger<UserService> _logger;
         private readonly IOptionsSnapshot<JwtSettings> _options;
-        //  private readonly IPublishEndpoint _publishEndpoint;
+        private readonly IPublishEndpoint _publishEndpoint;
         private readonly IConfiguration _configuration;
 
-        public UserAuthenticationService(UserManager<IdentityUser> userManager, IMapper mapper, ILogger<UserService> logger, IConfiguration configuration, IOptionsSnapshot<JwtSettings> options)
+        public UserAuthenticationService(UserManager<IdentityUser> userManager, IMapper mapper, ILogger<UserService> logger, IConfiguration configuration, IOptionsSnapshot<JwtSettings> options, IPublishEndpoint publishEndpoint)
         {
             _userManager = userManager;
             _mapper = mapper;
             _logger = logger;
             _configuration = configuration;
             _options = options;
+            _publishEndpoint = publishEndpoint;
         }
 
         public async Task<UserDto> CreateAsync(UserDto user, string password)
@@ -49,12 +52,14 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
             var identityUser = _mapper.Map<IdentityUser>(user);
 
             _logger.LogInformation("Starting the transaction for creating a new user with username {username} and email {email}", user.UserName, user.Email);
+            var userRegisterMessage = _mapper.Map<UserRegisterMessage>(user);
             IdentityResult result = await _userManager.CreateAsync(identityUser, password);
             _logger.LogInformation("The user has been successfully added...");
             await _userManager.AddRoleToUserAsync(user.Role, identityUser);
             _logger.LogInformation($"The role {user.Role} has been successfully assigned to {user.Name}...");
-            //publish
- 
+            await _publishEndpoint.Publish(userRegisterMessage);
+            _logger.LogInformation("User registration message published successfully for user {username}", user.UserName);
+
             return _mapper.Map<UserDto>(identityUser);
         }
 
@@ -83,7 +88,7 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                     new Claim(ClaimTypes.Email , user.Email),
+                     new Claim(ClaimTypes.Email , user.Email!),
                      new Claim(ClaimTypes.Role, role)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(15),
@@ -100,9 +105,9 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
                 Id = user.Id,
                 AccessToken = tokenHandler.WriteToken(token),
                 DurationInMinutes = _options.Value.DurationInMinutes,
-                Email = user.Email,
+                Email = user.Email!,
                 Role = role,
-                UserName = user.UserName,
+                UserName = user.UserName!,
             };
         }
     }

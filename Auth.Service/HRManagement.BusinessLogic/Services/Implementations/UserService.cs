@@ -23,7 +23,7 @@ namespace HRManagement.BusinessLogic.Services.Implementations
             _userManager = userManager;
             _mapper = mapper;
             _logger = logger;
-            // _publishEndpoint = publishEndpoint;
+            //   _publishEndpoint = publishEndpoint;
             _configuration = configuration;
         }
 
@@ -48,7 +48,6 @@ namespace HRManagement.BusinessLogic.Services.Implementations
             var role = roles.First();
             var result = await _userManager.DeleteAsync(user);
             _logger.LogInformation("User with email {email} successfully deleted", email);
-
             //await _publishEndpoint.Publish(new UserDeletedMessage() { Id = new Guid(user.Id), Role = role });
 
             return _mapper.Map<UserDto>(user);
@@ -84,7 +83,6 @@ namespace HRManagement.BusinessLogic.Services.Implementations
 
             return _mapper.Map<UserDto>(user);
         }
-
 
         public async Task<PageResult<UserDto>> GetUsersAsync(int page, int size, CancellationToken cancellation)
         {
