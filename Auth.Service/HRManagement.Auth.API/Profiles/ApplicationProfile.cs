@@ -32,6 +32,8 @@ namespace HRManagement.Auth.API.Profiles
                .ReverseMap();
             CreateMap<UserDto, UserLoginResponse>()
                .ReverseMap();
+            CreateMap<UserDto, UserChangePasswordResponse>()
+               .ReverseMap();
 
         }
     }
