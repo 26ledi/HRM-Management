@@ -1,0 +1,12 @@
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\bin\Debug\net8.0\Domain.deps.json
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\bin\Debug\net8.0\Domain.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\bin\Debug\net8.0\Domain.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\obj\Debug\net8.0\Domain.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\obj\Debug\net8.0\refint\Domain.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\obj\Debug\net8.0\Domain.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Domain\obj\Debug\net8.0\ref\Domain.dll
