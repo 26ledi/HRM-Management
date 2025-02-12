@@ -340,3 +340,8 @@ C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.Auth.API\o
 C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.Auth.API\obj\Debug\net8.0\HRManage.01ECD534.Up2Date
 C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.Auth.API\obj\Debug\net8.0\HRManagement.Auth.API.genruntimeconfig.cache
 C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.Auth.API\obj\Debug\net8.0\ref\HRManagement.Auth.API.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.Auth.API\bin\Debug\net8.0\MassTransit.ExtensionsDependencyInjectionIntegration.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.Auth.API\bin\Debug\net8.0\MassTransit.RabbitMqTransport.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.Auth.API\bin\Debug\net8.0\RabbitMQ.Client.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.Auth.API\bin\Debug\net8.0\HRManagement.MessageBrokers.Shared.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Auth.Service\HRManagement.Auth.API\bin\Debug\net8.0\HRManagement.MessageBrokers.Shared.pdb
