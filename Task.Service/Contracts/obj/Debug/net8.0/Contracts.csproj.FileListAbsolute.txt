@@ -1,0 +1,12 @@
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\bin\Debug\net8.0\Contracts.deps.json
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\bin\Debug\net8.0\Contracts.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\bin\Debug\net8.0\Contracts.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\obj\Debug\net8.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\obj\Debug\net8.0\Contracts.AssemblyInfoInputs.cache
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\obj\Debug\net8.0\Contracts.AssemblyInfo.cs
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\obj\Debug\net8.0\Contracts.csproj.CoreCompileInputs.cache
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\obj\Debug\net8.0\Contracts.sourcelink.json
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\obj\Debug\net8.0\Contracts.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\obj\Debug\net8.0\refint\Contracts.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\obj\Debug\net8.0\Contracts.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Contracts\obj\Debug\net8.0\ref\Contracts.dll
