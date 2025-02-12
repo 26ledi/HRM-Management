@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "EZxq+PFqpRtBGRSmWqgjQym29Va050GyQYmxgYM/pbg=",
+  "Source": "Task.Service.API",
+  "BasePath": "_content/Task.Service.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

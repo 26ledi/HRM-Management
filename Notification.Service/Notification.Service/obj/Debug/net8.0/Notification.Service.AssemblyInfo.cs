@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Notification.Service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a53a7e488cb1839174b54bcaa37a6757a09274b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d70dc8f85dac2941386dd276567e9060db3a381b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Notification.Service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Notification.Service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
