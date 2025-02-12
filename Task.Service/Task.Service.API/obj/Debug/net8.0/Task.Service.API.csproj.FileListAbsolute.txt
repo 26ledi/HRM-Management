@@ -173,3 +173,11 @@ C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\De
 C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\Debug\net8.0\Configurations.dll
 C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\Debug\net8.0\Configurations.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\Debug\net8.0\Application.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\Debug\net8.0\Contracts.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\Debug\net8.0\DependancyInjection.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\Debug\net8.0\HRManagement.Exceptions.Shared.dll
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\Debug\net8.0\Application.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\Debug\net8.0\DependancyInjection.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\Debug\net8.0\Contracts.pdb
+C:\Joyce Ledi\HRM Management\HRM-Management\Task.Service\Task.Service.API\bin\Debug\net8.0\HRManagement.Exceptions.Shared.pdb

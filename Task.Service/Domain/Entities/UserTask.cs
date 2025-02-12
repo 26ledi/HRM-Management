@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace Domain.Entities
 {
     public class UserTask
     {
@@ -6,27 +8,12 @@
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public DateTime Deadline { get; set; }
-        public TaskPriority Priority { get; set; }
-        public TaskStatus Status { get; set; }
-        public Guid EvaluationId { get; set; }
-        public TaskEvaluation TaskEvaluation { get; set; } = default!;
-        public List<TaskAssignment> TaskAssignments { get; set; } = [];
-        public List<string> AttachmentUrls { get; set; } = [];
+        public string Priority { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public TaskEvaluation? TaskEvaluation { get; set; }
+        public Guid? UserId { get; set; }
+        public User? User { get; set; }
+        public string AttachmentUrl { get; set; } = string.Empty;
         public string CreatedBy { get; set; } = string.Empty;
-        
-        public enum TaskPriority
-        {
-            Low,
-            Medium,
-            High
-        }
-
-        public enum TaskStatus
-        {
-            Pending,
-            InProgress,
-            Completed,
-            Verified
-        }
     }
 }

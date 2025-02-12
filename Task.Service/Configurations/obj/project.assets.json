@@ -1627,27 +1627,13 @@
           "Microsoft.EntityFrameworkCore": "9.0.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.1",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.1",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.1",
-          "Services.Abstractions": "1.0.0"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.1"
         },
         "compile": {
           "bin/placeholder/Persistence.dll": {}
         },
         "runtime": {
           "bin/placeholder/Persistence.dll": {}
-        }
-      },
-      "Services.Abstractions/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Domain": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Services.Abstractions.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Services.Abstractions.dll": {}
         }
       }
     }
@@ -4775,11 +4761,6 @@
       "type": "project",
       "path": "../Persistence/Persistence.csproj",
       "msbuildProject": "../Persistence/Persistence.csproj"
-    },
-    "Services.Abstractions/1.0.0": {
-      "type": "project",
-      "path": "../Services.Abstractions/Services.Abstractions.csproj",
-      "msbuildProject": "../Services.Abstractions/Services.Abstractions.csproj"
     }
   },
   "projectFileDependencyGroups": {

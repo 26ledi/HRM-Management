@@ -1,1 +1,302 @@
-[]
+[
+  {
+    "ContainingType": "Task.Service.API.Controllers.TaskEvaluationControllers",
+    "Method": "GetAll",
+    "RelativePath": "taskEvaluations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.TaskEvaluationControllers",
+    "Method": "DeleteTask",
+    "RelativePath": "taskEvaluations/taskEvaluation{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.TaskEvaluationControllers",
+    "Method": "GetByTaskId",
+    "RelativePath": "taskEvaluations/taskEvaluation/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.TaskEvaluationControllers",
+    "Method": "Create",
+    "RelativePath": "taskEvaluations/taskEvaluation/{taskId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "taskId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "taskEvaluationRequest",
+        "Type": "Contracts.Requests.TaskEvaluationRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.TaskEvaluationControllers",
+    "Method": "Update",
+    "RelativePath": "taskEvaluations/taskEvaluation/{taskId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "taskId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "taskEvaluationRequest",
+        "Type": "Contracts.Requests.TaskEvaluationRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserTaskControllers",
+    "Method": "GetAll",
+    "RelativePath": "tasks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserTaskControllers",
+    "Method": "GetByTitle",
+    "RelativePath": "tasks/{title}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "title",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserTaskControllers",
+    "Method": "UpdateTaskAssignmentAsync",
+    "RelativePath": "tasks/assignment{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserTaskControllers",
+    "Method": "UpdateTaskPriority",
+    "RelativePath": "tasks/priority{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "priority",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserTaskControllers",
+    "Method": "UpdateTaskStatus",
+    "RelativePath": "tasks/status{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserTaskControllers",
+    "Method": "CreateTask",
+    "RelativePath": "tasks/task",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "taskRequest",
+        "Type": "Contracts.Requests.UserTaskRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserTaskControllers",
+    "Method": "UpdateTask",
+    "RelativePath": "tasks/task{taskId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "taskId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateTaskRequest",
+        "Type": "Contracts.Requests.UpdateTaskRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserTaskControllers",
+    "Method": "DeleteTask",
+    "RelativePath": "tasks/task{taskId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "taskId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserTaskControllers",
+    "Method": "GetByTaskId",
+    "RelativePath": "tasks/task/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserControllers",
+    "Method": "GetAll",
+    "RelativePath": "users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserControllers",
+    "Method": "Create",
+    "RelativePath": "users/user",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userRequest",
+        "Type": "Contracts.Requests.UserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserControllers",
+    "Method": "DeleteTask",
+    "RelativePath": "users/user{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Service.API.Controllers.UserControllers",
+    "Method": "GetByTaskId",
+    "RelativePath": "users/user/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

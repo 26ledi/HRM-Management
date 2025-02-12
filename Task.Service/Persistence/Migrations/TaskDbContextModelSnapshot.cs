@@ -22,29 +22,6 @@ namespace Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Entities.TaskAssignment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UserEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UserTaskId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("assignementStatus")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserTaskId");
-
-                    b.ToTable("TaskAssignments");
-                });
-
             modelBuilder.Entity("Domain.Entities.TaskEvaluation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -61,9 +38,34 @@ namespace Persistence.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("UserTaskId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("UserTaskId")
+                        .IsUnique();
+
                     b.ToTable("TaskEvaluations");
+                });
+
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Domain.Entities.UserTask", b =>
@@ -72,7 +74,7 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.PrimitiveCollection<string>("AttachmentUrls")
+                    b.Property<string>("AttachmentUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -87,34 +89,33 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("EvaluationId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Priority")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Priority")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("TaskEvaluationId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("TaskEvaluationId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserTasks");
                 });
 
-            modelBuilder.Entity("Domain.Entities.TaskAssignment", b =>
+            modelBuilder.Entity("Domain.Entities.TaskEvaluation", b =>
                 {
                     b.HasOne("Domain.Entities.UserTask", "UserTask")
-                        .WithMany("TaskAssignments")
-                        .HasForeignKey("UserTaskId")
+                        .WithOne("TaskEvaluation")
+                        .HasForeignKey("Domain.Entities.TaskEvaluation", "UserTaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -123,23 +124,21 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.UserTask", b =>
                 {
-                    b.HasOne("Domain.Entities.TaskEvaluation", "TaskEvaluation")
-                        .WithMany("UserTasks")
-                        .HasForeignKey("TaskEvaluationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany("Tasks")
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("TaskEvaluation");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Entities.TaskEvaluation", b =>
+            modelBuilder.Entity("Domain.Entities.User", b =>
                 {
-                    b.Navigation("UserTasks");
+                    b.Navigation("Tasks");
                 });
 
             modelBuilder.Entity("Domain.Entities.UserTask", b =>
                 {
-                    b.Navigation("TaskAssignments");
+                    b.Navigation("TaskEvaluation");
                 });
 #pragma warning restore 612, 618
         }

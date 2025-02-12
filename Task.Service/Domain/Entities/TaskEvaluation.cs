@@ -4,8 +4,9 @@
     {
         public Guid Id { get; set; }
         public string EvaluatedBy { get; set; } = string.Empty;
-        public List<UserTask> UserTasks { get; set; } = [];
         public int Rating { get; set; }
         public DateTime DateEvaluation { get; set; }
+        public Guid UserTaskId { get; set; }
+        public UserTask UserTask { get; set; } = null!;
     }
 }
