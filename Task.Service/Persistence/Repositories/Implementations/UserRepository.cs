@@ -14,12 +14,12 @@ namespace Persistence.Repositories.Implementations
             _context = context;
         }
 
-        public async Task<User> AddAsync(User task)
+        public async Task<User> AddAsync(User user)
         {
-            _context.Users.Add(task);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return task;
+            return user;
         }
 
         public async Task DeleteAsync(User user)

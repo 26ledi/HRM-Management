@@ -3,6 +3,9 @@ using HRManagement.BusinessLogic.DTOs;
 using HRManagement.BusinessLogic.Helpers;
 using HRManagement.BusinessLogic.Repositories.Interfaces;
 using HRManagement.Exceptions.Shared;
+using HRManagement.Message.Shared;
+using HRManagement.Messages.Shared;
+using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,15 +18,15 @@ namespace HRManagement.BusinessLogic.Services.Implementations
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IMapper _mapper;
         private readonly ILogger<UserService> _logger;
-        // private readonly IPublishEndpoint _publishEndpoint;
+        private readonly IPublishEndpoint _publishEndpoint;
         private readonly IConfiguration _configuration;
 
-        public UserService(UserManager<IdentityUser> userManager, IMapper mapper, ILogger<UserService> logger, /*IPublishEndpoint publishEndpoint*/ IConfiguration configuration)
+        public UserService(UserManager<IdentityUser> userManager, IMapper mapper, ILogger<UserService> logger, IPublishEndpoint publishEndpoint, IConfiguration configuration)
         {
             _userManager = userManager;
             _mapper = mapper;
             _logger = logger;
-            //   _publishEndpoint = publishEndpoint;
+            _publishEndpoint = publishEndpoint;
             _configuration = configuration;
         }
 
@@ -48,7 +51,7 @@ namespace HRManagement.BusinessLogic.Services.Implementations
             var role = roles.First();
             var result = await _userManager.DeleteAsync(user);
             _logger.LogInformation("User with email {email} successfully deleted", email);
-            //await _publishEndpoint.Publish(new UserDeletedMessage() { Id = new Guid(user.Id), Role = role });
+            await _publishEndpoint.Publish(new UserDeletedMessage() { Email = user.Email! });
 
             return _mapper.Map<UserDto>(user);
         }
@@ -64,6 +67,7 @@ namespace HRManagement.BusinessLogic.Services.Implementations
 
             if (!string.IsNullOrWhiteSpace(user.Email))
                 userLooked.Email = user.Email;
+
             var result = await _userManager.UpdateAsync(userLooked);
 
             if (!result.Succeeded)
@@ -81,8 +85,19 @@ namespace HRManagement.BusinessLogic.Services.Implementations
 
             _logger.LogInformation("User with email {email} successfully updated", email);
 
-            return _mapper.Map<UserDto>(user);
+            var message = new UserUpdatedMessage
+            {
+                UserEmailToUpdate = email,
+                Email = userLooked.Email!,
+                Username = userLooked.UserName!
+            };
+
+            await _publishEndpoint.Publish(message);
+            _logger.LogInformation("User updating message published successfully for {username}", user.UserName);
+
+            return _mapper.Map<UserDto>(userLooked);
         }
+
 
         public async Task<PageResult<UserDto>> GetUsersAsync(int page, int size, CancellationToken cancellation)
         {

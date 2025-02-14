@@ -39,29 +39,43 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
         public async Task<UserDto> CreateAsync(UserDto user, string password)
         {
             _logger.LogInformation("Process of adding a user...");
-            var userLooked = await _userManager.FindByNameAsync(user.UserName);
 
+            var userLooked = await _userManager.FindByNameAsync(user.UserName);
             if (await _userManager.IsUserEmailExist(user.Email) && userLooked is not null)
             {
-                _logger.LogError("This user with {email} or username {username} already exist", user.Email, user.UserName);
-
+                _logger.LogError("This user with {email} or username {username} already exists", user.Email, user.UserName);
                 throw new AlreadyExistsException("This user exists already");
             }
 
             user.Id = Guid.NewGuid().ToString();
             var identityUser = _mapper.Map<IdentityUser>(user);
 
-            _logger.LogInformation("Starting the transaction for creating a new user with username {username} and email {email}", user.UserName, user.Email);
-            var userRegisterMessage = _mapper.Map<UserRegisterMessage>(user);
-            IdentityResult result = await _userManager.CreateAsync(identityUser, password);
-            _logger.LogInformation("The user has been successfully added...");
-            await _userManager.AddRoleToUserAsync(user.Role, identityUser);
-            _logger.LogInformation($"The role {user.Role} has been successfully assigned to {user.Name}...");
-            await _publishEndpoint.Publish(userRegisterMessage);
-            _logger.LogInformation("User registration message published successfully for user {username}", user.UserName);
+            _logger.LogInformation("Starting transaction for creating user {username}", user.UserName);
 
+            IdentityResult result = await _userManager.CreateAsync(identityUser, password);
+            if (!result.Succeeded)
+            {
+                _logger.LogError("Failed to create user {username}", user.UserName);
+                throw new Exception("User creation failed");
+            }
+
+            _logger.LogInformation("User successfully created...");
+            await _userManager.AddRoleToUserAsync(user.Role, identityUser);
+            _logger.LogInformation("Role {userRole} assigned to {username}", user.Role, user.UserName);
+
+            var userRegisterMessage = _mapper.Map<UserRegisterMessage>(user);
+            userRegisterMessage.Id = Guid.NewGuid(); 
+
+            _logger.LogInformation("Publishing user registration message for {username}", user.UserName);
+             await _publishEndpoint.Publish(userRegisterMessage, context =>
+             {
+                context.MessageId = userRegisterMessage.Id;
+             });
+
+            _logger.LogInformation("User registration message published successfully for {username}", user.UserName);
             return _mapper.Map<UserDto>(identityUser);
         }
+
 
         public async Task<TokenDto> LoginAsync(UserLoginDto user)
         {

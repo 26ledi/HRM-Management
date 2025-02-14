@@ -1,5 +1,4 @@
 ﻿using Application.Interfaces;
-using Contracts.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Task.Service.API.Controllers
@@ -15,14 +14,6 @@ namespace Task.Service.API.Controllers
             _userService = userService;
         }
 
-        //transform it to consumer
-        [HttpPost("user")]
-        public async Task<IActionResult> Create([FromBody] UserRequest userRequest)
-        {
-            var user = await _userService.CreateAsync(userRequest);
-
-            return Ok(user);
-        }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -30,14 +21,6 @@ namespace Task.Service.API.Controllers
             var user = await _userService.GetAllAsync();
 
             return Ok(user);
-        }
-
-        [HttpDelete("user{id}")]//Consumer
-        public async Task<IActionResult> DeleteTask([FromRoute] Guid id)
-        {
-            await _userService.DeleteAsync(id);
-
-            return NoContent();
         }
 
         [HttpGet("user/{id}")]

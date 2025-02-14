@@ -1,5 +1,6 @@
 using Configurations;
 using DependancyInjection;
+using Task.Service.API.Extensions;
 using Task.Service.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.ConfigureCrossOriginRessourceSharing();
+builder.Services.AddEndpointsApiExplorer();
+builder.AddConfigurations();
+builder.ConfigureMassTransit();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDatabase(builder.Configuration);

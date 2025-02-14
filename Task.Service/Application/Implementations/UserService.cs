@@ -16,7 +16,6 @@ namespace Application.Implementations
             _userRepository = userRepository;
         }
 
-        //This has to be related to the message broker!!!
         public async Task<UserResponse> CreateAsync(UserRequest userRequest)
         {
             var userLooked = await _userRepository.GetByEmailAsync(userRequest.Email);
@@ -26,9 +25,9 @@ namespace Application.Implementations
 
             var mappedUser = new User
             {
-                Id = Guid.NewGuid(),
+                Id = userRequest.Id,
                 Email = userRequest.Email,
-                Username = userRequest.Username
+                Username = userRequest.Username    
             };
 
             await _userRepository.AddAsync(mappedUser);
@@ -41,10 +40,10 @@ namespace Application.Implementations
             };
         }
 
-        public async Task DeleteAsync(Guid userId)
+        public async Task DeleteAsync(string email)
         {
-            var userLooked = await _userRepository.GetByIdAsync(userId)
-                                   ?? throw new NotFoundException($"The user with this ID : {userId} does not exist");
+            var userLooked = await _userRepository.GetByEmailAsync(email)
+                                   ?? throw new NotFoundException($"The user with this email : {email} does not exist");
 
             await _userRepository.DeleteAsync(userLooked);
         }
@@ -71,9 +70,12 @@ namespace Application.Implementations
             return userLooked;
         }
 
-        public async Task<UserResponse> UpdateAsync(Guid userId)
+        public async Task<UserResponse> UpdateAsync(string email, UserRequest userRequest)
         {
-            var userLooked = await GetUserByIdAsync(userId);
+            var userLooked = await _userRepository.GetByEmailAsync(email);
+
+            userLooked.Email = userRequest.Email;
+            userLooked.Username = userRequest.Username;
 
             var updatedTask = await _userRepository.UpdateAsync(userLooked);
 
