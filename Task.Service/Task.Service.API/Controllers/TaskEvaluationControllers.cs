@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Task.Service.API.Controllers
 {
     [ApiController]
-    [Route("taskEvaluations")]
+    [Route("task-evaluations")]
     public class TaskEvaluationControllers : ControllerBase
     {
         private readonly ITaskEvaluationService _taskEvaluationService;
@@ -17,7 +17,7 @@ namespace Task.Service.API.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPost("taskEvaluation/{taskId}")]
+        [HttpPost("task-evaluation/{taskId}")]
         public async Task<IActionResult> Create([FromRoute] Guid taskId, [FromBody] TaskEvaluationRequest taskEvaluationRequest)
         {
             var taskEvaluation = await _taskEvaluationService.AddAsync(taskId, taskEvaluationRequest);
@@ -26,7 +26,7 @@ namespace Task.Service.API.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPut("taskEvaluation/{taskId}")]
+        [HttpPut("task-evaluation/{taskId}")]
         public async Task<IActionResult> Update([FromRoute] Guid taskId, [FromBody] TaskEvaluationRequest taskEvaluationRequest)
         {
             var taskEvaluation = await _taskEvaluationService.UpdateAsync(taskId, taskEvaluationRequest);
@@ -44,7 +44,7 @@ namespace Task.Service.API.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpDelete("taskEvaluation{id}")]
+        [HttpDelete("task-evaluation/{id}")]
         public async Task<IActionResult> DeleteTask([FromRoute] Guid id)
         {
             await _taskEvaluationService.DeleteAsync(id);
@@ -53,7 +53,7 @@ namespace Task.Service.API.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpGet("taskEvaluation/{id}")]
+        [HttpGet("task-evaluation/{id}")]
         public async Task<IActionResult> GetByTaskId([FromRoute] Guid id)
         {
             var user = await _taskEvaluationService.GetByIdAsync(id);
