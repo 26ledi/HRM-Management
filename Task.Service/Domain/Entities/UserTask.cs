@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Domain.Entities
+﻿namespace Domain.Entities
 {
     public class UserTask
     {
@@ -11,6 +9,7 @@ namespace Domain.Entities
         public string Priority { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
         public TaskEvaluation? TaskEvaluation { get; set; }
+        public string UserEmail { get; set; } = string.Empty;
         public Guid? UserId { get; set; }
         public User? User { get; set; }
         public string AttachmentUrl { get; set; } = string.Empty;

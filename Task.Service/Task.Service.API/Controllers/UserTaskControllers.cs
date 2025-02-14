@@ -1,4 +1,5 @@
 ﻿using Contracts.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions.Services;
 
@@ -15,6 +16,7 @@ namespace Task.Service.API.Controllers
             _taskService = taskService;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("task")]
         public async Task<IActionResult> CreateTask([FromBody] UserTaskRequest taskRequest)
         {
@@ -39,6 +41,7 @@ namespace Task.Service.API.Controllers
             return Ok(task);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("assignment{id}")]
         public async Task<IActionResult> UpdateTaskAssignmentAsync([FromRoute] Guid id, Guid userId)
         {
@@ -47,6 +50,7 @@ namespace Task.Service.API.Controllers
             return Ok(task);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("priority{id}")]
         public async Task<IActionResult> UpdateTaskPriority([FromRoute] Guid id, string priority)
         {
@@ -55,6 +59,7 @@ namespace Task.Service.API.Controllers
             return Ok(task);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("task{taskId}")]
         public async Task<IActionResult> UpdateTask([FromRoute] Guid taskId, [FromBody] UpdateTaskRequest updateTaskRequest)
         {
@@ -63,6 +68,7 @@ namespace Task.Service.API.Controllers
             return Ok(task);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("task{taskId}")]
         public async Task<IActionResult> DeleteTask([FromRoute] Guid taskId)
         {

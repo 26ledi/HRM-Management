@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Contracts.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Task.Service.API.Controllers
@@ -15,6 +16,7 @@ namespace Task.Service.API.Controllers
             _taskEvaluationService = taskEvaluationService;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("taskEvaluation/{taskId}")]
         public async Task<IActionResult> Create([FromRoute] Guid taskId, [FromBody] TaskEvaluationRequest taskEvaluationRequest)
         {
@@ -23,6 +25,7 @@ namespace Task.Service.API.Controllers
             return Ok(taskEvaluation);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("taskEvaluation/{taskId}")]
         public async Task<IActionResult> Update([FromRoute] Guid taskId, [FromBody] TaskEvaluationRequest taskEvaluationRequest)
         {
@@ -31,6 +34,7 @@ namespace Task.Service.API.Controllers
             return Ok(taskEvaluation);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -39,6 +43,7 @@ namespace Task.Service.API.Controllers
             return Ok(taskEvaluations);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("taskEvaluation{id}")]
         public async Task<IActionResult> DeleteTask([FromRoute] Guid id)
         {
@@ -47,6 +52,7 @@ namespace Task.Service.API.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("taskEvaluation/{id}")]
         public async Task<IActionResult> GetByTaskId([FromRoute] Guid id)
         {

@@ -38,7 +38,7 @@ namespace Application.Implementations
                 Priority = taskRequest.Priority,
                 Description = taskRequest.Description,
                 Deadline = taskRequest.Deadline,
-                UserId = taskRequest.UserId,
+                UserEmail = taskRequest.UserEmail,
                 AttachmentUrl = taskRequest.AttachmentUrl,
                 CreatedBy = taskRequest.CreatedBy,
             };
@@ -55,10 +55,9 @@ namespace Application.Implementations
                 Priority = mappedTask.Priority,
                 Title = mappedTask.Title,
                 TaskEvaluation = mappedTask.TaskEvaluation?.Rating.ToString() ?? "No rating yet",
-                UserId = mappedTask.UserId,
+                UserEmail = mappedTask.UserEmail,
                 AttachmentUrl = mappedTask.AttachmentUrl,
                 Status = mappedTask.Status,
-                Email = mappedTask.User?.Email ?? "No email yet",
             };
         }
 
@@ -83,11 +82,10 @@ namespace Application.Implementations
                 Deadline = task.Deadline,
                 Description = task.Description,
                 Priority = task.Priority,
-                UserId = task.UserId,
                 Title = task.Title,
                 Status = task.Status,
                 TaskEvaluation = task.TaskEvaluation?.Rating.ToString() ?? "No rating yet",
-                Email = task.User?.Email ?? "No email yet",
+                UserEmail = task.UserEmail,
                 AttachmentUrl = task.AttachmentUrl
             }).ToList();
         }
@@ -117,9 +115,8 @@ namespace Application.Implementations
                 Priority = userTaskLooked.Priority,
                 Title = userTaskLooked.Title,
                 Status = userTaskLooked.Status,
-                UserId = userTaskLooked.UserId,
                 TaskEvaluation = userTaskLooked.TaskEvaluation?.Rating.ToString() ?? "No rating yet",
-                Email = userTaskLooked.User?.Email ?? "No email yet",
+                UserEmail = userTaskLooked.UserEmail,
                 CreatedBy = userTaskLooked.CreatedBy,
                 AttachmentUrl = userTaskLooked.AttachmentUrl
             };
@@ -144,9 +141,8 @@ namespace Application.Implementations
                 Priority = task.Priority,
                 Title = task.Title,
                 Status = task.Status,
-                UserId = task.UserId,
                 TaskEvaluation = task.TaskEvaluation?.Rating.ToString() ?? "No rating yet",
-                Email = task.User?.Email ?? "No email yet",
+                UserEmail = task.UserEmail,
                 CreatedBy = task.CreatedBy,
                 AttachmentUrl = task.AttachmentUrl
             };
@@ -164,9 +160,8 @@ namespace Application.Implementations
                 Priority = userTaskLooked.Priority,
                 Title = userTaskLooked.Title,
                 Status = userTaskLooked.Status,
-                UserId = userTaskLooked.UserId,
                 TaskEvaluation = userTaskLooked.TaskEvaluation?.Rating.ToString() ?? "No rating yet",
-                Email = userTaskLooked.User?.Email ?? "No email yet",
+                UserEmail = userTaskLooked.UserEmail,
                 CreatedBy = userTaskLooked.CreatedBy,
                 AttachmentUrl = userTaskLooked.AttachmentUrl
             };
@@ -189,9 +184,8 @@ namespace Application.Implementations
                 Priority = userTaskLooked.Priority,
                 Title = userTaskLooked.Title,
                 Status = userTaskLooked.Status,
-                UserId = userTaskLooked.UserId,
                 TaskEvaluation = userTaskLooked.TaskEvaluation?.Rating.ToString() ?? "No rating yet",
-                Email = userTaskLooked.User?.Email ?? "No email yet",
+                UserEmail = userTaskLooked.UserEmail,
                 CreatedBy = userTaskLooked.CreatedBy,
                 AttachmentUrl = userTaskLooked.AttachmentUrl
             };

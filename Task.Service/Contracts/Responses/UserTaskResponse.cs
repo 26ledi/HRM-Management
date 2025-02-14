@@ -11,7 +11,6 @@
         public string AttachmentUrl { get; set; } = string.Empty;
         public string CreatedBy { get; set; } = string.Empty;
         public string TaskEvaluation { get; set; } = string.Empty ;
-        public Guid? UserId { get; set; }
-        public string Email { get; set; } = string.Empty;
+        public string UserEmail { get; set; } = string.Empty;
     }
 }
