@@ -14,5 +14,7 @@
         public User? User { get; set; }
         public string AttachmentUrl { get; set; } = string.Empty;
         public string CreatedBy { get; set; } = string.Empty;
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }

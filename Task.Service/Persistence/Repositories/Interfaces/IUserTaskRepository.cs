@@ -10,5 +10,8 @@ namespace Services.Abstractions.Repositories
         Task<UserTask>AddAsync(UserTask task);
         Task<UserTask>UpdateAsync(UserTask task);
         Task DeleteAsync(UserTask task);
+        Task<int> GetTotalTasksAssignedAsync();
+        Task<int> GetTasksCompletedOnTimeAsync();
+        Task<double> GetAverageTaskDelayAsync();
     }
 }

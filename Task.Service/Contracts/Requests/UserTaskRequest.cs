@@ -10,5 +10,6 @@
         public string UserEmail { get; set; } = string.Empty;
         public string AttachmentUrl { get; set; } = string.Empty;
         public string CreatedBy { get; set; } = string.Empty;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

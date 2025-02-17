@@ -1,4 +1,5 @@
-﻿using Contracts.Requests;
+﻿using Contracts.DTO_s;
+using Contracts.Requests;
 using Contracts.Responses;
 using Domain.Entities;
 
@@ -15,5 +16,6 @@ namespace Services.Abstractions.Services
         Task DeleteUserTaskAsync(Guid taskId);
         Task<UserTaskResponse> GetByTitleAsync(string title);
         Task<UserTaskResponse> UpdateTaskAssignmentAsync(Guid taskId, Guid userId);
+        Task<TaskReportDto> GenerateTaskReportAsync();
     }
 }

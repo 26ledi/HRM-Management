@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Constants;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Data;
 using Services.Abstractions.Repositories;
@@ -56,6 +57,28 @@ namespace Persistence.Repositories.Implementations
             return await _context.UserTasks.Include(x => x.User)
                                            .Include(x => x.TaskEvaluation)
                                            .FirstOrDefaultAsync(x => x.Title == title);
+        }
+
+        public async Task <int> GetTotalTasksAssignedAsync() 
+        {
+            return await _context.UserTasks.CountAsync(x => x.UserEmail != ConstantMessage.NotAssigned);
+        }
+
+        public async Task<int> GetTasksCompletedOnTimeAsync()
+        {
+            return await _context.UserTasks
+                .CountAsync(t => t.Status == UserTaskStatus.Completed && t.UpdatedAt != null && t.UpdatedAt <= t.Deadline);
+        }
+
+        public async Task<double> GetAverageTaskDelayAsync()
+        {
+            var delays = await _context.UserTasks
+                .Where(t => t.Status == UserTaskStatus.Completed && t.UpdatedAt != null && t.UpdatedAt > t.Deadline)
+                .Select(t => (t.UpdatedAt - t.Deadline).TotalMinutes) 
+                .ToListAsync();
+
+            return delays.Any() ? delays.Average() : 0; 
+
         }
     }
 }

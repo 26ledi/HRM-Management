@@ -1,4 +1,5 @@
-﻿using Contracts.Requests;
+﻿using Contracts.DTO_s;
+using Contracts.Requests;
 using Contracts.Responses;
 using Domain.Constants;
 using Domain.Entities;
@@ -29,6 +30,8 @@ namespace Application.Implementations
 
             if (!TaskPriority.IsValidStatus(taskRequest.Priority))
                 throw new Exception("This priority type does not exist");
+            if (string.IsNullOrWhiteSpace(taskRequest.UserEmail))
+                taskRequest.UserEmail = ConstantMessage.NotAssigned;
 
             var mappedTask = new UserTask
             {
@@ -41,6 +44,7 @@ namespace Application.Implementations
                 UserEmail = taskRequest.UserEmail,
                 AttachmentUrl = taskRequest.AttachmentUrl,
                 CreatedBy = taskRequest.CreatedBy,
+                CreatedAt = DateTime.Now
             };
 
             await _userTaskRepository.AddAsync(mappedTask);
@@ -58,6 +62,7 @@ namespace Application.Implementations
                 UserEmail = mappedTask.UserEmail,
                 AttachmentUrl = mappedTask.AttachmentUrl,
                 Status = mappedTask.Status,
+                CreatedAt = mappedTask.CreatedAt,
             };
         }
 
@@ -86,7 +91,8 @@ namespace Application.Implementations
                 Status = task.Status,
                 TaskEvaluation = task.TaskEvaluation?.Rating.ToString() ?? "No rating yet",
                 UserEmail = task.UserEmail,
-                AttachmentUrl = task.AttachmentUrl
+                AttachmentUrl = task.AttachmentUrl,
+                CreatedAt = task.CreatedAt,
             }).ToList();
         }
 
@@ -105,6 +111,8 @@ namespace Application.Implementations
             if (UserTaskStatus.IsValidStatus(status))
                 userTaskLooked.Status = status;
 
+            userTaskLooked.UpdatedAt = DateTime.UtcNow;
+
             await _userTaskRepository.UpdateAsync(userTaskLooked);
 
             return new UserTaskResponse
@@ -118,7 +126,8 @@ namespace Application.Implementations
                 TaskEvaluation = userTaskLooked.TaskEvaluation?.Rating.ToString() ?? "No rating yet",
                 UserEmail = userTaskLooked.UserEmail,
                 CreatedBy = userTaskLooked.CreatedBy,
-                AttachmentUrl = userTaskLooked.AttachmentUrl
+                AttachmentUrl = userTaskLooked.AttachmentUrl,
+                UpdatedAt = userTaskLooked.UpdatedAt,
             };
         }
         public async Task<UserTaskResponse> UpdateTaskAssignmentAsync(Guid taskId, Guid userId)
@@ -211,5 +220,67 @@ namespace Application.Implementations
                 AttachmentUrl = updatedTask.AttachmentUrl
             };
         }
+
+        private async Task<int> GetTotalTasksAssignedAsync()
+        {
+            var assignedTask = await _userTaskRepository.GetTotalTasksAssignedAsync();
+
+            if (assignedTask == 0)
+            {
+                throw new Exception("There is not any assigned task");
+            }
+
+            return assignedTask;
+        }
+
+        private async Task<int> GetTasksCompletedOnTimeAsync()
+        {
+            var taskCompletedNumber = await _userTaskRepository.GetTasksCompletedOnTimeAsync();
+
+            if (taskCompletedNumber == 0)
+            {
+                throw new Exception("There is not any task completed yet");
+            }
+
+            return taskCompletedNumber;
+        }
+
+        private async Task<double> GetAverageTaskDelayAsync() 
+        {
+            var avgTaskDelayed = await _userTaskRepository.GetAverageTaskDelayAsync();
+
+            if (avgTaskDelayed == 0)
+            {
+                throw new Exception("There is not any task delayed yet");
+            }
+
+            return avgTaskDelayed;
+        }
+
+        public async Task<TaskReportDto> GenerateTaskReportAsync()
+        {
+            var report = new TaskReportDto
+            {
+                TotalTasksAssigned = await SafeExecuteAsync(GetTotalTasksAssignedAsync, 0)
+            };
+
+            report.TasksCompletedOnTime = await SafeExecuteAsync(GetTasksCompletedOnTimeAsync, 0);
+            report.AverageTaskDelay = await SafeExecuteAsync(GetAverageTaskDelayAsync, 0.0);
+
+            return report;
+        }
+
+        private async Task<T> SafeExecuteAsync<T>(Func<Task<T>> func, T defaultValue)
+        {
+            try
+            {
+                return await func();
+            }
+            catch
+            {
+                return defaultValue;
+            }
+        }
+
     }
 }
