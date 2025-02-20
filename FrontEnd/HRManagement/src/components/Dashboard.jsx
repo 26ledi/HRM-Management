@@ -31,7 +31,7 @@ const Dashboard = () => {
 
       <div className="report-container">
         <div className="report-header">
-          <h1 className="recent-Articles">Recent Articles</h1>
+          <h1 className="recent-Tasks">Recent Tasks</h1>
           <button className="view">View All</button>
         </div>
 
@@ -48,14 +48,14 @@ const Dashboard = () => {
 
           <div className="items">
             {[
-              { AssignedTo: "joyce@gmail.com", task: "Fix bugs", deadline: "20.12.2024", priority: "Low", evaluation: "8/10", status: "Created", createdBy: "John"},
-              { AssignedTo: "joyce@gmail.com", task: "Fix bugs", deadline: "20.12.2024", priority: "Low", evaluation: "8/10", status: "Pending", createdBy: "John"},
-              { AssignedTo: "joyce@gmail.com", task: "Fix bugs", deadline: "20.12.2024", priority: "Low", evaluation: "8/10", status: "Completed", createdBy: "John"},
-              { AssignedTo: "joyce@gmail.com", task: "Fix bugs", deadline: "20.12.2024", priority: "Low", evaluation: "8/10", status: "InProgress", createdBy: "John"},
-              { AssignedTo: "joyce@gmail.com", task: "Fix bugs", deadline: "20.12.2024", priority: "Low", evaluation: "8/10", status: "Verified", createdBy: "John"},
+              { assignedTo: "joyce@gmail.com", task: "Fix bugs", deadline: "20.12.2024", priority: "Low", evaluation: "8/10", status: "Created", createdBy: "John"},
+              { assignedTo: "joyce@gmail.com", task: "Fix bugs", deadline: "20.12.2024", priority: "Low", evaluation: "8/10", status: "Pending", createdBy: "John"},
+              { assignedTo: "joyce@gmail.com", task: "Fix bugs", deadline: "20.12.2024", priority: "Low", evaluation: "8/10", status: "Completed", createdBy: "John"},
+              { assignedTo: "joyce@gmail.com", task: "Fix bugs", deadline: "20.12.2024", priority: "Low", evaluation: "8/10", status: "InProgress", createdBy: "John"},
+              { assignedTo: "joyce@gmail.com", task: "Fix bugs", deadline: "20.12.2024", priority: "Low", evaluation: "8/10", status: "Verified", createdBy: "John"},
             ].map((datas, index) => (
               <div className="item1" key={index}>
-                <h3 className="t-op-nextlvl">{datas.AssignedTo}</h3>
+                <h3 className="t-op-nextlvl">{datas.assignedTo}</h3>
                 <h3 className="t-op-nextlvl">{datas.task}</h3>
                 <h3 className="t-op-nextlvl">{datas.deadline}</h3>
                 <h3 className="t-op-nextlvl">{datas.priority}</h3>
