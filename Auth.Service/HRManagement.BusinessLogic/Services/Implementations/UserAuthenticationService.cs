@@ -3,6 +3,7 @@ using HRManagement.BusinessLogic.DTOs;
 using HRManagement.BusinessLogic.Helpers;
 using HRManagement.BusinessLogic.Repositories.Interfaces;
 using HRManagement.BusinessLogic.Services.Implementations;
+using HRManagement.DataAccess.Constants;
 using HRManagement.Exceptions.Shared;
 using HRManagement.Message.Shared;
 using MassTransit;
@@ -39,12 +40,15 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
         public async Task<UserDto> CreateAsync(UserDto user, string password)
         {
             _logger.LogInformation("Process of adding a user...");
-
             var userLooked = await _userManager.FindByNameAsync(user.UserName);
-            if (await _userManager.IsUserEmailExist(user.Email) && userLooked is not null)
+
+            if (userLooked != null)
+                throw new AlreadyExistsException($"This username '{user.UserName}' already exists");
+
+            if (await _userManager.IsUserEmailExist(user.Email) || userLooked is not null)
             {
                 _logger.LogError("This user with {email} or username {username} already exists", user.Email, user.UserName);
-                throw new AlreadyExistsException("This user exists already");
+                throw new AlreadyExistsException($"This email '{user.Email}' already exists");
             }
 
             user.Id = Guid.NewGuid().ToString();
@@ -60,7 +64,7 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
             }
 
             _logger.LogInformation("User successfully created...");
-            await _userManager.AddRoleToUserAsync(user.Role, identityUser);
+            await _userManager.AddRoleToUserAsync(DefaultRole.Teacher, identityUser);
             _logger.LogInformation("Role {userRole} assigned to {username}", user.Role, user.UserName);
 
             var userRegisterMessage = _mapper.Map<UserRegisterMessage>(user);
@@ -85,8 +89,8 @@ namespace HRManagement.BusinessLogic.Repositories.Implementations
 
             if (!await _userManager.CheckPasswordAsync(userLooked, user.Password))
             {
-                _logger.LogError("There is no user with that email");
-                throw new NotFoundException("Wrong email, please try again or sign up");
+                _logger.LogError("Re-check your email please!");
+                throw new NotFoundException("Wrong password, please try again or sign up");
             }
 
             return await GenerateTokenAsync(userLooked);

@@ -1,0 +1,52 @@
+.register-container
+{
+    width: 800px;
+    height:700px;
+    background: linear-gradient(to left, #ab68ca, #008080); 
+    top: -100px;
+    box-sizing: border-box;
+    padding: 10%;
+    transition: all 0.5s ease-in-out;
+    z-index: 11;
+}
+input {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 40px;
+    width: 300px;
+    border-radius: 2px;
+    border: none;
+    background-color: #444;
+    opacity: 0.6;
+    outline: none;
+    color: #fff;
+    padding-left: 10px;
+}
+
+hr {
+    width: 20%;
+    float: left;
+    background-color: #fff;
+    font-size: 16px;
+}
+.login-btn {
+    width: 140px;
+    height: 40px;
+    margin-top: 20px;
+    background: #fff;
+    border: none;
+    border-radius: 2px;
+    color: #696a86;
+    cursor: pointer;
+}
+
+.signup-btn {
+    width: 140px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #fff;;
+    border-radius: 2px;
+    color: #fff;
+    margin-left: 30px;
+    cursor: pointer;
+}
