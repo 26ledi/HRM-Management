@@ -50,7 +50,7 @@ namespace Persistence.Repositories.Implementations
 
         public async Task<User> GetByEmailAsync(string email)
         {
-            return await _context.Users.Include(x => x.Tasks)
+            return await _context.Users.AsNoTracking().Include(x => x.Tasks)
                                            .FirstOrDefaultAsync(x => x.Email == email);
         }
     }

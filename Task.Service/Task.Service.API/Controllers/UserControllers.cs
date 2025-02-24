@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Task.Service.API.Controllers
 {
     [ApiController]
-    [Route("users")]
+    [Route("tasks")]
     public class UserControllers : ControllerBase
     {
         private readonly IUserService _userService;
@@ -15,7 +15,7 @@ namespace Task.Service.API.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("users")]
         public async Task<IActionResult> GetAll()
         {
             var user = await _userService.GetAllAsync();

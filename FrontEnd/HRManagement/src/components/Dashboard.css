@@ -1,17 +1,17 @@
 .box-container {
 display: flex;
-justify-content: space-between; /* Ensures equal spacing */
-align-items: center; /* Aligns items in the center vertically */
+justify-content: space-between;
+align-items: center; 
 padding: 20px;
-gap: 20px; /* Adds spacing between boxes */
+gap: 20px; 
 }
 
 .box {
-flex: 1; /* Ensures equal width for all boxes */
+flex: 1; 
 padding: 20px;
 border-radius: 10px;
 background-color: #ffffff;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for modern look */
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 text-align: center;
 }
 
@@ -149,6 +149,8 @@ background-color: #f1f1f1;
 .t-op-nextlvl {
 flex: 1;
 text-align: center;
+padding-right: 10px;
+padding-left: 1px;
 font-size: 14px;
 color: #4d473c;
 }
@@ -161,6 +163,44 @@ color: green;
     filter: blur(5px);
     pointer-events: none;
 }
+
+.delete-icon {
+width: 24px;  /* Adjust size */
+height: 24px;
+cursor: pointer; /* Make it clickable */
+transition: opacity 0.2s ease-in-out;
+}
+
+.delete-icon:hover {
+opacity: 0.7;
+}
+.table-dropdown {
+    font-size: 15px;
+    padding: 10px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    font-family: 'Raleway', sans-serif;
+    color: #333;
+    cursor: pointer;
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+  
+  /* Hover state */
+  .table-dropdown:hover {
+    border-color: #888;
+  }
+  
+  /* Optional: style the options */
+  .table-dropdown option {
+    padding: 4px 8px;
+  }
+  
   
 /* Responsive */
 @media (max-width: 768px) {
