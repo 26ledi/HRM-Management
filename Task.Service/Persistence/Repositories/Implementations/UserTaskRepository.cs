@@ -70,15 +70,14 @@ namespace Persistence.Repositories.Implementations
                 .CountAsync(t => t.Status == UserTaskStatus.Completed && t.UpdatedAt != null && t.UpdatedAt <= t.Deadline);
         }
 
-        public async Task<double> GetAverageTaskDelayAsync()
+        public async Task<double> GetAverageTaskDelayInHoursAsync()
         {
             var delays = await _context.UserTasks
                 .Where(t => t.Status == UserTaskStatus.Completed && t.UpdatedAt != null && t.UpdatedAt > t.Deadline)
-                .Select(t => (t.UpdatedAt - t.Deadline).TotalMinutes) 
+                .Select(t => (t.UpdatedAt - t.Deadline).TotalHours)
                 .ToListAsync();
 
-            return delays.Any() ? delays.Average() : 0; 
-
+            return delays.Any() ? Math.Round(delays.Average(), 2) : 0;
         }
     }
 }

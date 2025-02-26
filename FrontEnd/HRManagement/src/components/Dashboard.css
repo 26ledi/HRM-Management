@@ -83,63 +83,16 @@ border-top: 2px solid #f1f1f1;
 padding-top: 10px;
 }
 
-.report-topic-heading {
-display: flex;
-justify-content: space-between;
-padding: 10px;
-font-weight: bold;
-background-color: #f8f9fa;
-border-radius: 5px;
-font-size: small;
-}
-
 .items {
 margin-top: 10px;
 }
-
+.report-topic-heading,
 .item1 {
-display: flex;
-justify-content: space-between;
-padding: 10px;
-border-bottom: 1px solid #ddd;
-transition: background 0.3s;
-}
-.status {
-padding: 5px 10px;
-border-radius: 5px;
-font-weight: bold;
-display: inline-block;
-text-align: center;
-min-width: 100px;
-}
-
-.status-created {
-background-color: #ffeb99;
-color: #996600;
-font-size: medium;
-}
-.status-pending {
-background-color: #ffcccc;
-color: #cc0000;
-font-size: medium;
-}
-
-.status-inprogress {
-background-color: #cce5ff;
-color: #004085;
-font-size: medium;
-}
-
-.status-completed {
-background-color: #d4edda;
-color: #155724;
-font-size: medium;
-}
-
-.status-verified {
-background-color: #e2e3e5;
-color: #343a40;
-font-size: medium;
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
 }
 
 .item1:hover {
@@ -159,21 +112,26 @@ color: #4d473c;
 font-weight: bold;
 color: green;
 }
+
 .blur-background {
     filter: blur(5px);
     pointer-events: none;
 }
 
-.delete-icon {
-width: 24px;  /* Adjust size */
-height: 24px;
-cursor: pointer; /* Make it clickable */
-transition: opacity 0.2s ease-in-out;
+
+.action-icon {
+    display: flex;
+    gap: 12px;
+    width: 24px; 
+    height: 24px;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .delete-icon:hover {
-opacity: 0.7;
+    opacity: 0.7;
 }
+
 .table-dropdown {
     font-size: 15px;
     padding: 10px;
@@ -189,18 +147,35 @@ opacity: 0.7;
     -moz-appearance: none;
     position: relative;
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
+  }
   
-  /* Hover state */
+  .table-dropdown.yellow {
+    color: #c5c744; 
+  }
+  
+  .table-dropdown.red {
+    color: #802a32;
+  }
+  
+  .table-dropdown.blue {
+    color: #1f5ba8;
+  }
+  
+  .table-dropdown.green {
+    color: #34b44a;
+  }
+  
+  .table-dropdown.orange {
+    color: #d8870d;
+  }
+  
   .table-dropdown:hover {
     border-color: #888;
   }
   
-  /* Optional: style the options */
   .table-dropdown option {
     padding: 4px 8px;
   }
-  
   
 /* Responsive */
 @media (max-width: 768px) {
@@ -214,7 +189,7 @@ opacity: 0.7;
 /* Responsive Design */
 @media (max-width: 768px) {
 .box-container {
-    flex-direction: column; /* Stack boxes vertically on smaller screens */
+    flex-direction: column;
     gap: 10px;
 }
 }

@@ -15,7 +15,7 @@ namespace Services.Abstractions.Services
         Task<UpdateTaskResponse> UpdateTaskAsync(Guid taskId, UpdateTaskRequest updateTaskRequest);
         Task DeleteUserTaskAsync(Guid taskId);
         Task<UserTaskResponse> GetByTitleAsync(string title);
-        Task<UserTaskResponse> UpdateTaskAssignmentAsync(Guid taskId, Guid userId);
+        Task<UserTaskResponse> UpdateTaskAssignmentAsync(Guid taskId, string userEmail);
         Task<TaskReportDto> GenerateTaskReportAsync();
     }
 }

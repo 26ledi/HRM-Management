@@ -130,15 +130,15 @@ namespace Application.Implementations
                 UpdatedAt = userTaskLooked.UpdatedAt,
             };
         }
-        public async Task<UserTaskResponse> UpdateTaskAssignmentAsync(Guid taskId, Guid userId)
+        public async Task<UserTaskResponse> UpdateTaskAssignmentAsync(Guid taskId, string userEmail)
         {
             var task = await GetTaskByIdAsync(taskId);
-            var user = await _userRepository.GetByIdAsync(userId);
+            var user = await _userRepository.GetByEmailAsync(userEmail);
 
             if (user is null)
-                throw new NotFoundException($"A user with this ID:{userId} does not exist");
+                throw new NotFoundException($"A user with this email:{userEmail} does not exist");
 
-            task.UserId = userId;
+            task.UserEmail = user.Email;
 
             await _userTaskRepository.UpdateAsync(task);
 
@@ -208,6 +208,7 @@ namespace Application.Implementations
             task.Description = updateTaskRequest.Description;
             task.AttachmentUrl = updateTaskRequest.AttachmentUrl;
             task.Deadline = updateTaskRequest.Deadline;
+            task.CreatedBy = updateTaskRequest.CreatedBy;
 
             var updatedTask = await _userTaskRepository.UpdateAsync(task);
 
@@ -215,7 +216,10 @@ namespace Application.Implementations
             {
                 Id = taskId,
                 Deadline = updatedTask.Deadline,
+                CreatedAt = updatedTask.CreatedAt,
                 Description = updatedTask.Description,
+                TaskEvaluation = updatedTask.TaskEvaluation?.Rating.ToString() ?? "No rating yet",
+                CreatedBy = updatedTask.CreatedBy,
                 Title = updatedTask.Title,
                 AttachmentUrl = updatedTask.AttachmentUrl
             };
@@ -247,7 +251,7 @@ namespace Application.Implementations
 
         private async Task<double> GetAverageTaskDelayAsync() 
         {
-            var avgTaskDelayed = await _userTaskRepository.GetAverageTaskDelayAsync();
+            var avgTaskDelayed = await _userTaskRepository.GetAverageTaskDelayInHoursAsync();
 
             if (avgTaskDelayed == 0)
             {

@@ -12,6 +12,6 @@ namespace Services.Abstractions.Repositories
         Task DeleteAsync(UserTask task);
         Task<int> GetTotalTasksAssignedAsync();
         Task<int> GetTasksCompletedOnTimeAsync();
-        Task<double> GetAverageTaskDelayAsync();
+        Task<double> GetAverageTaskDelayInHoursAsync();
     }
 }

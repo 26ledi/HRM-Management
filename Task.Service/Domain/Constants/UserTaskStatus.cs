@@ -13,6 +13,7 @@
             return status == Pending ||
                    status == InProgress ||
                    status == Completed ||
+                   status == Created ||
                    status == Verified;
         }
     }

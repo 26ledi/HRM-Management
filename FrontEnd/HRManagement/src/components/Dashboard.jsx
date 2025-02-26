@@ -3,7 +3,9 @@ import axios from "axios";
 import './Dashboard.css';
 import SearchBar from "./SearchBar";
 import CreateTaskModal from "./CreateTaskModal";
+import UpdateTaskModal from "./UpdateTaskModal";
 import binImg from "/Joyce Ledi/HRM Management/HRM-Management/FrontEnd/HRManagement/src/assets/bin.png";
+import updateImg from "/Joyce Ledi/HRM Management/HRM-Management/FrontEnd/HRManagement/src/assets/update.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,7 +16,9 @@ const Dashboard = () => {
     const [taskData, setTaskData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [users, setUsers] = useState([]);
+    const [selectedTaskId, setSelectedTaskId] = useState(null);
 
     useEffect(() => {
         const fetchReports = async () => {
@@ -46,7 +50,6 @@ const Dashboard = () => {
             try {
                 const response = await axios.get("https://localhost:7051/tasks/users");
                 console.log("Fetched Users:", response.data);
-                // Ensure response.data is an array
                 setUsers(Array.isArray(response.data) ? response.data : []);
             } catch (error) {
                 alert("Failed to load users");
@@ -69,12 +72,11 @@ const Dashboard = () => {
             setTaskData((prevTasks) => {
                 const updatedTasks = [...prevTasks, response.data];
                 updateReports(updatedTasks);
-
+                
                 return updatedTasks;
             })
             console.log("Task created successfully:", response.data);
-            toast.success("Task created successfully")
-            
+            toast.success("Task created successfully")        
         } catch (error) {
             console.error("Failed to create task:", error);
             toast.error("Failed to create task. Please try again.");
@@ -107,14 +109,16 @@ const Dashboard = () => {
             );
           }
       
-          // Update local state: if the API returns the updated task, you might replace the task.
-          // Here, we update the specific field.
           setTaskData((prevTasks) =>
             prevTasks.map((task) =>
               task.id === taskId ? { ...task, [field]: value } : task
             )
           );
           toast.success(`The ${field.charAt(0).toUpperCase() + field.slice(1)} has been updated`);
+          setTimeout(() => {
+            window.location.reload();
+          }, 3050);
+
         } catch (error) {
           console.error(`Failed to update ${field}:`, error);
           toast.error(`Failed to update ${field}`);
@@ -140,6 +144,32 @@ const Dashboard = () => {
         }
     };
 
+    const handleUpdateTaskEntity = async (updatedTaskData) => {
+        try {
+        
+          const response = await axios.put(`https://localhost:7051/tasks/task/${selectedTaskId}`, updatedTaskData);
+          console.log("Task updated successfully:", response);
+          toast.success("Task updated successfully")    
+          setTaskData((prevTasks) => {
+            return prevTasks.map(task =>
+              task.id === selectedTaskId ? response.data : task
+            );
+          });
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 3050);
+        } catch (error) {
+          console.error("Failed to update task:", error);
+        }
+      };
+      
+
+    const handleOpenUpdateModal = (taskId) => {
+        setSelectedTaskId(taskId);
+        setIsUpdateModalOpen(true);
+      };
+      
     const updateReports = (updatedTasks) => {
     const tasksCompletedOnTime = updatedTasks.filter(task => task.status === 'Completed' && new Date(task.deadline) <= new Date()).length;
     const totalTasksAssigned = updatedTasks.length;
@@ -153,17 +183,45 @@ const Dashboard = () => {
     if (!text) return "";
     return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
    };
-  
 
+   const getColorClass = (argument) => {
+        switch (argument) {
+        case 'Created':
+            return 'yellow';
+        case 'Pending':
+            return 'red';
+        case 'InProgress':
+            return 'orange';
+        case 'Completed':
+            return 'blue';
+        case 'Verified':
+            return 'green';
+        case 'Low':
+            return 'orange';
+        case 'Medium':
+            return 'blue';
+        case 'High':
+            return 'red'
+        default:
+            return '';
+        }
+  };
+  
   return (
     <div>
         <ToastContainer />
+        <UpdateTaskModal 
+            isOpen={isUpdateModalOpen}
+            onClosed={() => setIsUpdateModalOpen(false)}
+            onUpdated={handleUpdateTaskEntity}
+            taskId={selectedTaskId}
+        />
         <CreateTaskModal 
             isOpen={isModalOpen} 
             onClose={() => setIsModalOpen(false)}
             onCreate={handleCreateTask}  
         />
-      <div className={`box-container ${isModalOpen ? "blur-background" : ""}`}>
+      <div className={`box-container ${isModalOpen || isUpdateModalOpen ? "blur-background" : ""}`}>
         <div className="box box1">
           <div className="text">
             <h2 className="topic-heading">{taskCompletedOnTime ?? "0"}</h2>
@@ -173,8 +231,8 @@ const Dashboard = () => {
 
         <div className="box box2">
           <div className="text">
-            <h2 className="topic-heading">{averageTaskDelay ?? "0"}</h2>
-            <h2 className="topic">Average Task Delay</h2>
+            <h2 className="topic-heading">{averageTaskDelay ?? "0" + "hour(s)"}</h2>
+            <h2 className="topic">Average Task Delay To Hours</h2>
           </div>
         </div>
 
@@ -231,7 +289,7 @@ const Dashboard = () => {
                 <h3 className="t-op-nextlvl">{truncateText(task.attachmentUrl, 20)}</h3>
                  {/* Dropdown for "Priority" */}
                 <select
-                    className="table-dropdown"
+                    className={`table-dropdown ${getColorClass(task.priority)}`}
                     value={task.priority}
                     onChange={(e) => handleUpdateTaskField(task.id, "priority", e.target.value)}
                     >
@@ -243,7 +301,7 @@ const Dashboard = () => {
                 <h3 className="t-op-nextlvl">{task.taskEvaluation}</h3>
                 {/* Dropdown for "Status" */}
                 <select
-                    className="table-dropdown"
+                    className={`table-dropdown ${getColorClass(task.status)}`}
                     value={task.status}
                     onChange={(e) => handleUpdateTaskField(task.id, "status", e.target.value)}
                     >
@@ -254,17 +312,21 @@ const Dashboard = () => {
                     <option value="Completed">Completed</option>
                     <option value="Verified">Verified</option>
                 </select>
+
                 <h3 className="t-op-nextlvl">{new Date(task.createdAt).toDateString()}</h3>
                 <h3 className="t-op-nextlvl">{task.createdBy}</h3>
+                <div className="action-icon">
                 <img 
                     src={binImg}
                     onClick={() => handleDeleteTask(task.id)} 
-                    className="delete-icon" 
                 />
-
+                <img 
+                    src={updateImg}
+                    onClick={() => handleOpenUpdateModal(task.id)}
+                />
+                </div>
             </div>
             ))}
-           
           </div>
         </div>
       </div>
