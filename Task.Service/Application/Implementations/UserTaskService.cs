@@ -7,6 +7,7 @@ using HRManagement.Exceptions.Shared;
 using Persistence.Repositories.Interfaces;
 using Services.Abstractions.Repositories;
 using Services.Abstractions.Services;
+using System.Threading.Tasks;
 
 namespace Application.Implementations
 {
@@ -100,7 +101,6 @@ namespace Application.Implementations
         {
             var userTaskLooked = await _userTaskRepository.GetByIdAsync(taskId)
                                        ?? throw new NotFoundException($"A task with this ID {taskId} does not exist");
-
             return userTaskLooked;
         }
 
@@ -154,6 +154,24 @@ namespace Application.Implementations
                 UserEmail = task.UserEmail,
                 CreatedBy = task.CreatedBy,
                 AttachmentUrl = task.AttachmentUrl
+            };
+        }
+        public async Task<UserTaskResponse> GetByIdAsync(Guid id)//Duplication !!! need to fix later
+        {
+            var userTaskLooked = await _userTaskRepository.GetByIdAsync(id)
+                                       ?? throw new NotFoundException($"A task with this ID {id} does not exist");
+            return new UserTaskResponse
+            {
+                Id = userTaskLooked.Id,
+                Deadline = userTaskLooked.Deadline,
+                Description = userTaskLooked.Description,
+                Priority = userTaskLooked.Priority,
+                Title = userTaskLooked.Title,
+                Status = userTaskLooked.Status,
+                TaskEvaluation = userTaskLooked.TaskEvaluation?.Rating.ToString() ?? "No rating yet",
+                UserEmail = userTaskLooked.UserEmail,
+                CreatedBy = userTaskLooked.CreatedBy,
+                AttachmentUrl = userTaskLooked.AttachmentUrl
             };
         }
 

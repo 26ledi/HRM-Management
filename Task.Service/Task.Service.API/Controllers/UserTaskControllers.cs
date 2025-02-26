@@ -88,7 +88,7 @@ namespace Task.Service.API.Controllers
         [HttpGet("task/{id}")]
         public async Task<IActionResult> GetByTaskId([FromRoute] Guid id)
         {
-            var task = await _taskService.GetTaskByIdAsync(id);
+            var task = await _taskService.GetByIdAsync(id);
 
             return Ok(task);
         }

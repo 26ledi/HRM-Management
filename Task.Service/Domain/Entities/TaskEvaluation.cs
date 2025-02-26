@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace Domain.Entities
 {
     public class TaskEvaluation
     {
@@ -7,6 +9,7 @@
         public int Rating { get; set; }
         public DateTime DateEvaluation { get; set; }
         public Guid UserTaskId { get; set; }
+        [JsonIgnore]
         public UserTask UserTask { get; set; } = null!;
     }
 }

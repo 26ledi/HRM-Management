@@ -10,7 +10,6 @@ const UpdateTaskModal = ({isOpen, onClosed, onUpdated, taskId}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState("");
-  const [evaluation, setEvaluation] = useState("");
   const [createdBy, setCreatedBy] = useState("");
   const [attachmentUrl, setAttachmentUrl] = useState("");
   
@@ -21,7 +20,6 @@ const UpdateTaskModal = ({isOpen, onClosed, onUpdated, taskId}) => {
         console.log("Fetched task:", response.data);
         setTitle(response.data.title || "");
         setDescription(response.data.description || "");
-        setEvaluation(response.data.taskEvaluation || "");
         setDeadline(response.data.deadline || "");
         setCreatedBy(response.data.createdBy || "");
         setAttachmentUrl(response.data.attachmentUrl || "");

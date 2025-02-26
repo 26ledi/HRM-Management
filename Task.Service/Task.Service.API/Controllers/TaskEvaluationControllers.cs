@@ -16,23 +16,15 @@ namespace Task.Service.API.Controllers
             _taskEvaluationService = taskEvaluationService;
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpPost("task-evaluation/{taskId}")]
-        public async Task<IActionResult> Create([FromRoute] Guid taskId, [FromBody] TaskEvaluationRequest taskEvaluationRequest)
+        //       [Authorize(Roles = "Admin")]
+        [HttpPost("task-evaluation/{taskId}/upsert")]
+        public async Task<IActionResult> Upsert([FromRoute] Guid taskId, [FromBody] TaskEvaluationRequest taskEvaluationRequest)
         {
-            var taskEvaluation = await _taskEvaluationService.AddAsync(taskId, taskEvaluationRequest);
+            var taskEvaluation = await _taskEvaluationService.UpsertAsync(taskId, taskEvaluationRequest);
 
             return Ok(taskEvaluation);
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpPut("task-evaluation/{taskId}")]
-        public async Task<IActionResult> Update([FromRoute] Guid taskId, [FromBody] TaskEvaluationRequest taskEvaluationRequest)
-        {
-            var taskEvaluation = await _taskEvaluationService.UpdateAsync(taskId, taskEvaluationRequest);
-
-            return Ok(taskEvaluation);
-        }
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
@@ -41,24 +33,6 @@ namespace Task.Service.API.Controllers
             var taskEvaluations = await _taskEvaluationService.GetAllAsync();
 
             return Ok(taskEvaluations);
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpDelete("task-evaluation/{id}")]
-        public async Task<IActionResult> DeleteTask([FromRoute] Guid id)
-        {
-            await _taskEvaluationService.DeleteAsync(id);
-
-            return NoContent();
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpGet("task-evaluation/{id}")]
-        public async Task<IActionResult> GetByTaskId([FromRoute] Guid id)
-        {
-            var user = await _taskEvaluationService.GetByIdAsync(id);
-
-            return Ok(user);
         }
     }
 }

@@ -30,12 +30,15 @@ namespace Persistence.Repositories.Implementations
 
         public async Task<IEnumerable<TaskEvaluation>> GetAllAsync()
         {
-            return await _context.TaskEvaluations.ToListAsync();
+            return await _context.TaskEvaluations
+                                 .Include(x => x.UserTask)
+                                 .ToListAsync();
         }
 
-        public async Task<TaskEvaluation> GetByIdAsync(Guid id)
+        public async Task<TaskEvaluation> GetByTaskIdAsync(Guid id)
         {
-            return await _context.TaskEvaluations.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.TaskEvaluations.AsNoTracking()
+                                                 .FirstOrDefaultAsync(x => x.UserTaskId == id);
         }
 
         public async Task<TaskEvaluation> UpdateAsync(TaskEvaluation task)

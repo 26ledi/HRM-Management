@@ -14,6 +14,7 @@ const Dashboard = () => {
     const [averageTaskDelay, setAverageTaskDelay] = useState("");
     const [totalTasksAssigned, setTotalTaskAssigned] = useState("");
     const [taskData, setTaskData] = useState([]);
+    const [evaluation, setEvaluation] = useState(0);
     const [searchTerm, setSearchTerm] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
@@ -184,6 +185,22 @@ const Dashboard = () => {
     return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
    };
 
+   const handleEvaluation = async (taskId) => {
+    try {
+         const response = await axios.post(
+        `https://localhost:7051/task-evaluations/task-evaluation/${taskId}/upsert`,
+        { rating :evaluation }
+      );
+  
+      setEvaluation(response.data.rating);
+      toast.success("The evaluation has been saved!");
+    } catch (error) {
+      console.error("Error updating evaluation:", error);
+      toast.error("Failed to save evaluation");
+    }
+  };
+  
+
    const getColorClass = (argument) => {
         switch (argument) {
         case 'Created':
@@ -298,7 +315,17 @@ const Dashboard = () => {
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
                 </select>
-                <h3 className="t-op-nextlvl">{task.taskEvaluation}</h3>
+                <input
+                    type="number"
+                    className="evaluation-task"
+                    defaultValue={task.taskEvaluation || ""}
+                    placeholder="No rating yet"
+                    min="1"
+                    max="10"
+                    onChange={(e) => setEvaluation(parseInt(e.target.value, 10))}
+                    onBlur={() => handleEvaluation(task.id)}
+                />
+
                 {/* Dropdown for "Status" */}
                 <select
                     className={`table-dropdown ${getColorClass(task.status)}`}

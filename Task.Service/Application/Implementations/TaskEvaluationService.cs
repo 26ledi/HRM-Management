@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Contracts.Requests;
 using Contracts.Responses;
+using Domain.Constants;
 using Domain.Entities;
 using HRManagement.Exceptions.Shared;
 using Services.Abstractions.Repositories;
@@ -17,47 +18,45 @@ namespace Application.Implementations
             _taskEvaluationRepository = taskEvaluationRepository;
             _userTaskRepository = userTaskRepository;
         }
-        public async Task<TaskEvaluationResponse> AddAsync(Guid taskId, TaskEvaluationRequest taskEvaluationRequest)
+        public async Task<TaskEvaluationResponse> UpsertAsync(Guid taskId, TaskEvaluationRequest taskEvaluationRequest)
         {
             var task = await _userTaskRepository.GetByIdAsync(taskId)
-                             ?? throw new NotFoundException($"A task with this ID: {taskId} does not exist");
+                          ?? throw new NotFoundException($"A task with this ID: {taskId} was not found");
 
-            var mappedTaskEvaluation = new TaskEvaluation()
+            var taskEvaluation = await _taskEvaluationRepository.GetByTaskIdAsync(taskId);
+
+            if (taskEvaluation is null)
             {
-                Id = Guid.NewGuid(),
-                DateEvaluation = taskEvaluationRequest.DateEvaluation,
-                EvaluatedBy = taskEvaluationRequest.EvaluatedBy,
-                Rating = taskEvaluationRequest.Rating,
-                UserTaskId = taskId,
-            };
+                taskEvaluation = new TaskEvaluation
+                {
+                    Id = Guid.NewGuid(),
+                    DateEvaluation = taskEvaluationRequest.DateEvaluation,
+                    EvaluatedBy = ConstantMessage.HeadOfDepartment,
+                    Rating = taskEvaluationRequest.Rating,
+                    UserTaskId = taskId
+                };
 
-            await _taskEvaluationRepository.AddAsync(mappedTaskEvaluation);
-
-            return new TaskEvaluationResponse()
+                await _taskEvaluationRepository.AddAsync(taskEvaluation);
+            }
+            else
             {
-                Id = mappedTaskEvaluation.Id,
-                DateEvaluation = mappedTaskEvaluation.DateEvaluation,
-                EvaluatedBy = mappedTaskEvaluation.EvaluatedBy,
-                Rating = mappedTaskEvaluation.Rating,
-                UserTaskId = mappedTaskEvaluation.UserTaskId,
-            };
-        }
+                taskEvaluation.DateEvaluation = taskEvaluationRequest.DateEvaluation;
+                taskEvaluation.EvaluatedBy = ConstantMessage.HeadOfDepartment;
+                taskEvaluation.Rating = taskEvaluationRequest.Rating;
 
-        public async Task DeleteAsync(Guid taskEvaluationId)
-        {
-            var taskEvaluation = await GetByIdAsync(taskEvaluationId);
+                await _taskEvaluationRepository.UpdateAsync(taskEvaluation);
+            }
 
-            var mappedTaskEvaluation = new TaskEvaluation()
+            return new TaskEvaluationResponse
             {
-                Id = taskEvaluationId,
+                Id = taskEvaluation.Id,
                 DateEvaluation = taskEvaluation.DateEvaluation,
                 EvaluatedBy = taskEvaluation.EvaluatedBy,
                 Rating = taskEvaluation.Rating,
-                UserTaskId = taskEvaluation.UserTaskId,
+                UserTaskId = taskEvaluation.UserTaskId
             };
-
-            await _taskEvaluationRepository.DeleteAsync(mappedTaskEvaluation);
         }
+
 
         public async Task<IEnumerable<TaskEvaluationResponse>> GetAllAsync()
         {
@@ -74,47 +73,6 @@ namespace Application.Implementations
                 Rating = taskEvaluation.Rating,
                 UserTaskId = taskEvaluation.UserTaskId,
             }).ToList();
-        }
-
-        public async Task<TaskEvaluationResponse> GetByIdAsync(Guid id)
-        {
-             var taskEvaluation = await _taskEvaluationRepository.GetByIdAsync(id)
-                                       ?? throw new NotFoundException($"A task with this ID: {id} does not exist");
-
-            return new TaskEvaluationResponse()
-            {
-                Id = taskEvaluation.Id,
-                DateEvaluation = taskEvaluation.DateEvaluation,
-                EvaluatedBy = taskEvaluation.EvaluatedBy,
-                Rating = taskEvaluation.Rating,
-                UserTaskId = taskEvaluation.UserTaskId,
-            };
-        }
-
-        public async Task<TaskEvaluationResponse> UpdateAsync(Guid taskId ,TaskEvaluationRequest taskEvaluationRequest)
-        {
-            var task = await _userTaskRepository.GetByIdAsync(taskId)
-                              ?? throw new NotFoundException($"A task with this ID: {taskId} does not exist");
-
-            var mappedTaskEvaluation = new TaskEvaluation()
-            {
-                Id = task.TaskEvaluation!.Id,
-                DateEvaluation = taskEvaluationRequest.DateEvaluation,
-                EvaluatedBy = taskEvaluationRequest.EvaluatedBy,
-                Rating = taskEvaluationRequest.Rating,
-                UserTaskId = taskId,
-            };
-
-            await _taskEvaluationRepository.UpdateAsync(mappedTaskEvaluation);
-
-            return new TaskEvaluationResponse()
-            {
-                Id = mappedTaskEvaluation.Id,
-                DateEvaluation = mappedTaskEvaluation.DateEvaluation,
-                EvaluatedBy = mappedTaskEvaluation.EvaluatedBy,
-                Rating = mappedTaskEvaluation.Rating,
-                UserTaskId = mappedTaskEvaluation.UserTaskId,
-            };
         }
     }
 }
