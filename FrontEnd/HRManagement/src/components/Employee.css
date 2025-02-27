@@ -1,0 +1,96 @@
+.page-title {
+    font-size: 26px;
+    margin: 20px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    color: #008080;
+    width: 100%;
+    position: relative;
+    display: block;
+    margin-left: 350%;
+    transform: translateX(-50%);
+  } 
+  .page-title::after {
+    content: "";
+    width: 60px;
+    height: 4px;
+    background-color: #008080;
+    display: block;
+    margin: 5px auto 0;
+    border-radius: 2px;
+}
+
+/* -------------------- TABLEAU -------------------- */
+  
+  .responsive-table{
+    position: fixed;
+    display: block;
+    height: auto;
+    padding-top: 20px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    width: 50%;
+    margin-left: 17%;
+    border-radius: 10px;
+    background: linear-gradient(to right, #008080, #00b3b3);
+    font-size: 15px;
+  }
+  
+  
+  .table-header, .table-row {
+    display: flex;
+  }
+  
+  .table-header {
+    background-color: #008080;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  
+.table-row {
+    display: flex;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease-in-out;
+}
+
+.table-row:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.table-row:hover {
+    background-color: #e0f7fa;
+    transform: scale(1.02);
+}
+ 
+.table-header div, .table-row div {
+    flex-basis: 20%;
+    padding: 10px;
+}
+  
+.table-row div {
+   text-align:initial
+}
+  
+  @media (max-width: 767px) {
+    .table-row div {
+      display: block;
+      text-align: left;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .page-title  {
+        font-size: 22px;  
+        margin-left: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+  
+    .table-row div:before {
+      content: attr(data-label);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  }
+  

@@ -69,6 +69,27 @@ namespace Persistence.Repositories.Implementations
             return await _context.UserTasks
                 .CountAsync(t => t.Status == UserTaskStatus.Completed && t.UpdatedAt != null && t.UpdatedAt <= t.Deadline);
         }
+        public async Task<int> GetTasksCompletedOnTimeByUserMonthlyAsync(string userEmail)
+        {
+            var firstDayOfMonth = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, 1);
+            var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
+            return await _context.UserTasks
+                .Where(t => t.UserEmail == userEmail
+                            && t.Status == UserTaskStatus.Completed
+                            && t.UpdatedAt != null
+                            && t.UpdatedAt <= t.Deadline
+                            && t.UpdatedAt >= firstDayOfMonth
+                            && t.UpdatedAt <= lastDayOfMonth)
+                .CountAsync();
+        }
+
+        public async Task<int> GetAssignedTasksCountByUserAsync(string userEmail)
+        {
+            return await _context.UserTasks
+                .Where(t => t.UserEmail == userEmail)
+                .CountAsync();
+        }
 
         public async Task<double> GetAverageTaskDelayInHoursAsync()
         {

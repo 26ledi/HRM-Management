@@ -4,16 +4,19 @@ using Contracts.Responses;
 using Domain.Entities;
 using HRManagement.Exceptions.Shared;
 using Persistence.Repositories.Interfaces;
+using Services.Abstractions.Repositories;
 
 namespace Application.Implementations
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUserTaskRepository _userTaskRepository;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IUserTaskRepository userTaskRepository)
         {
             _userRepository = userRepository;
+            _userTaskRepository = userTaskRepository;
         }
 
         public async Task<UserResponse> CreateAsync(UserRequest userRequest)
@@ -52,15 +55,27 @@ namespace Application.Implementations
         {
             var users = await _userRepository.GetAllAsync();
 
-            if (users is null)
+            if (users is null || !users.Any())
                 throw new NotFoundException("There is no any user");
 
-            return users.Select(user => new UserResponse()
+            var userResponses = new List<UserResponse>();
+
+            foreach (var user in users)
             {
-                Id = user.Id,
-                Email = user.Email,
-                Username = user.Username
-            }).ToList();
+                var assignedTaskCount = await _userTaskRepository.GetAssignedTasksCountByUserAsync(user.Email);
+                var completedMonthlyTask = await _userTaskRepository.GetTasksCompletedOnTimeByUserMonthlyAsync(user.Email);
+
+                userResponses.Add(new UserResponse()
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    Username = user.Username,
+                    CompletedMonthlyTaskNumber = completedMonthlyTask,
+                    AssignedTaskNumber = assignedTaskCount
+                });
+            }
+
+            return userResponses;
         }
 
         public async Task<User> GetUserByIdAsync(Guid userId)

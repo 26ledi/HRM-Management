@@ -13,5 +13,7 @@ namespace Services.Abstractions.Repositories
         Task<int> GetTotalTasksAssignedAsync();
         Task<int> GetTasksCompletedOnTimeAsync();
         Task<double> GetAverageTaskDelayInHoursAsync();
+        Task<int> GetTasksCompletedOnTimeByUserMonthlyAsync(string userEmail);
+        Task<int> GetAssignedTasksCountByUserAsync(string userEmail);
     }
 }
