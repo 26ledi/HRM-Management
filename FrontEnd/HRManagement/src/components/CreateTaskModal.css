@@ -94,7 +94,12 @@
         padding: 10px 20px;
         transition: all 0.3s ease-in-out;
     }
-    
+    .label-text{
+        font-family: 'Raleway', sans-serif;
+        color: #333;
+        font-weight: bold;
+        margin-right: auto;
+    }
     .create-task-btn:hover {
         background:rgb(38, 84, 153);
         color: white;

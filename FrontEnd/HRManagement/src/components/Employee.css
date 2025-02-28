@@ -13,7 +13,7 @@
   .page-title::after {
     content: "";
     width: 60px;
-    height: 4px;
+    height: 4px; 
     background-color: #008080;
     display: block;
     margin: 5px auto 0;
@@ -70,6 +70,14 @@
   
 .table-row div {
    text-align:initial
+}
+.action-icon {
+    display: flex;
+    gap: 12px;
+    width: 24px; 
+    height: 24px;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
 }
   
   @media (max-width: 767px) {
