@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard.jsx";
 import SideBar from "./components/SideBar";
 import Tasks from "./components/Tasks.jsx";
 import Employees from "./components/Employees";

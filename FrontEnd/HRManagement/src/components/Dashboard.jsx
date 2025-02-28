@@ -238,7 +238,7 @@ const Dashboard = () => {
             onClose={() => setIsModalOpen(false)}
             onCreate={handleCreateTask}  
         />
-      <div className={`box-container ${isModalOpen || isUpdateModalOpen ? "blur-background" : ""}`}>
+      <div className={`box-container`}>
         <div className="box box1">
           <div className="text">
             <h2 className="topic-heading">{taskCompletedOnTime ?? "0"}</h2>

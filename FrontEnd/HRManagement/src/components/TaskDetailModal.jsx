@@ -8,7 +8,6 @@ const TaskDetailModal = ({ isOpen, onClosed, taskId}) => {
   if (!isOpen) return null;
 
   const [taskLooked, setTaskLooked] = useState({});
-  const [status, setStatus] = useState("");
   const[selectedStatus, setSelectedStatus] = useState("");
 
   useEffect(() => {
@@ -29,8 +28,6 @@ const TaskDetailModal = ({ isOpen, onClosed, taskId}) => {
           taskEvaluation: response.data.taskEvaluation || "",
           status: response.data.status || "",
         });
-
-        setStatus(response.data.status || "");
         setSelectedStatus(response.data.status || "");
       } catch (error) {
         toast.error("Failed to load the task");
@@ -60,7 +57,6 @@ const TaskDetailModal = ({ isOpen, onClosed, taskId}) => {
         console.error("Failed to update status:", error);
     }
 };
-
 
   return (
     <div className="modal-overlay">
